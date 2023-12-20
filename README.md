@@ -47,5 +47,13 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## SetUp Prettier, ESLint,Husky, Lint-Staged
 
+Prettier is a code formatter that supports various languages. It is possible to format the code automatically by installing the extension in VSCode and setting it.
+
+ESLint is a static analysis tool for JavaScript. It is possible to check the code automatically by installing the extension in VSCode and setting it.
+
+Husky is a tool that allows you to run scripts when you run git commands such as commit and push.
+
+Lint-Staged is a tool that allows you to run scripts only for the files you have staged.
+
 As it may be updated, please refer to the following URL for the latest information.(https://prettier.io/docs/en/install,
 https://eslint.org/docs/latest/use/getting-started)
