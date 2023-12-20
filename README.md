@@ -44,3 +44,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## SetUp Prettier, ESLint,Husky, Lint-Staged
+
+As it may be updated, please refer to the following URL for the latest information.(https://prettier.io/docs/en/install,
+https://eslint.org/docs/latest/use/getting-started)
