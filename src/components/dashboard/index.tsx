@@ -1,6 +1,10 @@
-import Table from 'react-bootstrap/Table'
+// Dashboard.jsx
+
 import React from 'react'
+import { Table } from 'react-bootstrap'
 import MainNavbar from '../navbar'
+import './styles.css' // Import the CSS file
+
 function Dashboard() {
   const data = [
     ['Desktop', 'Laptop', 'Printer'],
@@ -9,38 +13,25 @@ function Dashboard() {
     ['Airpurifier', 'Biometrix', 'Projector'],
     ['UPS', 'AC'],
   ]
+
   return (
     <>
       <MainNavbar />
-      <h3 style={{ textAlign: 'center' }}>INVENTORY AUDIT SHEET</h3>
+      <h3 className='center-heading'>INVENTORY AUDIT SHEET</h3>
       <Table bordered>
         <tbody>
           {data.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              <td>
-                <a
-                  className='btn  btn-xl btn-outline-dark btn-info text-primary'
-                  role='button'
-                >
-                  {row[0]}
-                </a>
-              </td>
-              <td>
-                <a
-                  className='btn  btn-xl btn-outline-dark btn-info text-primary'
-                  role='button'
-                >
-                  {row[1]}
-                </a>
-              </td>
-              <td>
-                <a
-                  className='btn  btn-xl btn-outline-dark btn-info text-primary'
-                  role='button'
-                >
-                  {row[2]}
-                </a>
-              </td>
+              {row.map((item, colIndex) => (
+                <td key={colIndex}>
+                  <a
+                    className='btn btn-xl btn-outline-dark btn-info text-primary'
+                    role='button'
+                  >
+                    {item}
+                  </a>
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
