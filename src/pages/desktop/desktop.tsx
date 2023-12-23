@@ -1,136 +1,21 @@
 import React, { useState } from 'react'
-import { Form, InputGroup, Table } from 'react-bootstrap'
-import MainNavbar from '../../navbar/navbar'
+import { Button, Form, InputGroup, Table } from 'react-bootstrap'
+import MainNavbar from '../../components/navbar/navbar'
 import './desktop.css'
-
-enum MakeOptions {
-  Assembled = 'Assembled',
-  Dell = 'Dell',
-  HP = 'HP',
-  Lenovo = 'Lenovo',
-  Others = 'Others',
-}
-enum CityOptions {
-  Hyderabad = 'Hyderabad',
-  Bangalore = 'Bangalore',
-  Chennai = 'Chennai',
-  Mumbai = 'Mumbai',
-  Others = 'Others',
-}
-enum OperatingSystem {
-  Windows = 'Windows',
-  Linux = 'Linux',
-  Mac = 'Mac',
-  Others = 'Others',
-}
-
-enum ProcessorOptions {
-  Corei3 = 'Core i3',
-  Corei5 = 'Core i5',
-  Corei7 = 'Core i7',
-  Corei9 = 'Core i9',
-  M1 = 'M1',
-  M2 = 'M2',
-  DualCore = 'Dual Core',
-  QuadCore = 'Quad Core',
-  AMD_RYZEN = 'AMD RYZEN',
-  Others = 'Others',
-}
-
-// Enum for RAM options
-enum RAMOptions {
-  GB4 = '4GB',
-  GB8 = '8GB',
-  GB16 = '16GB',
-  GB32 = '32GB',
-  GB64 = '64GB',
-}
-
-// Enum for Storage options
-enum StorageOptions {
-  GB64 = '64GB',
-  GB128 = '128GB',
-  GB256 = '256GB',
-  GB500 = '500GB',
-  TB1 = '1TB',
-}
-
-// Enum for Graphics options
-enum GraphicsOptions {
-  GB2 = '2GB',
-  GB4 = '4GB',
-  GB8 = '8GB',
-  GB16 = '16GB',
-  NA = 'NA',
-}
-
-// Enum for Status options
-enum StatusOptions {
-  Working = 'Working',
-  NotWorking = 'Not Working',
-}
-interface InputTextProps {
-  label: string
-  name: string
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-const InputText: React.FC<InputTextProps> = ({
-  label,
-  name,
-  placeholder,
-  value,
-  onChange,
-}) => {
-  return (
-    <tr>
-      <td colSpan={2}>
-        <Form.Label>{label}:</Form.Label>
-      </td>
-      <td>
-        <InputGroup className='mb-3'>
-          <Form.Control
-            type='text'
-            placeholder={placeholder}
-            aria-label={name}
-            aria-describedby='basic-addon1'
-            name={name}
-            value={value}
-            onChange={onChange}
-          />
-        </InputGroup>
-      </td>
-    </tr>
-  )
-}
-
-interface FormData {
-  make: MakeOptions
-  city: CityOptions
-  model: string
-  tagID: string
-  hodTag: string
-  location: string
-  serialNumber: string
-  lan: string
-  wifi: string
-  processor: ProcessorOptions
-  generation: string
-  os: OperatingSystem
-  osKey: string
-  hostname: string
-  ram: RAMOptions
-  storage: StorageOptions
-  graphics: GraphicsOptions
-  user: string
-  status: StatusOptions
-  remarks: string
-  updatedBy: string
-}
-
+import {
+  MakeOptions,
+  CityOptions,
+  OperatingSystem,
+  ProcessorOptions,
+  RAMOptions,
+  StorageOptions,
+  GraphicsOptions,
+  StatusOptions,
+} from '../../enums/desktop'
+import InputText from '../../components/inputText/inputText'
+import { DesktopFormData } from '../../dtos'
 const DesktopAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<DesktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -163,7 +48,6 @@ const DesktopAuditForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Perform form submission logic here
     msg()
   }
   //for radio button of status
@@ -258,7 +142,7 @@ const DesktopAuditForm: React.FC = () => {
       <div>
         <h1 className='center-heading'>DESKTOP AUDIT</h1>
         <form action='/Desktop/register' method='POST' onSubmit={handleSubmit}>
-          <Table bordered>
+          <Table bordered className='custom-table'>
             <tbody>
               <tr>
                 <td colSpan={2}>
@@ -269,6 +153,7 @@ const DesktopAuditForm: React.FC = () => {
                     aria-label='Make'
                     name='make'
                     value={formData.make}
+                    style={{ width: '50%' }}
                     onChange={handleChange}
                   >
                     {Object.values(MakeOptions).map((makeOption) => (
@@ -288,6 +173,7 @@ const DesktopAuditForm: React.FC = () => {
                     aria-label='City'
                     name='city'
                     value={formData.city}
+                    style={{ width: '50%' }}
                     onChange={handleChange}
                   >
                     {Object.values(CityOptions).map((cityOption) => (
@@ -341,7 +227,7 @@ const DesktopAuditForm: React.FC = () => {
                   <Form.Label>LAN:</Form.Label>
                 </td>
                 <td>
-                  <InputGroup className='mb-3'>
+                  <InputGroup className='mb-3' style={{ width: '50%' }}>
                     <Form.Control
                       placeholder='Enter the LAN'
                       aria-label='LAN'
@@ -355,7 +241,7 @@ const DesktopAuditForm: React.FC = () => {
                   <Form.Label>WiFi:</Form.Label>
                 </td>
                 <td>
-                  <InputGroup className='mb-3'>
+                  <InputGroup className='mb-3' style={{ width: '50%' }}>
                     <Form.Control
                       placeholder='Enter the WiFi'
                       aria-label='WiFi'
@@ -385,9 +271,7 @@ const DesktopAuditForm: React.FC = () => {
                 <td colSpan={2}>
                   <Form.Label>Processor:</Form.Label>
                 </td>
-                <td>
-                  <td>{renderProcessorOptions()}</td>
-                </td>
+                <td>{renderProcessorOptions()}</td>
               </tr>
               <InputText
                 label='Generation'
@@ -500,10 +384,15 @@ const DesktopAuditForm: React.FC = () => {
                 onChange={handleChange}
               />
               <tr>
+                <td colSpan={2}></td>
                 <td colSpan={3}>
-                  <button type='submit' className='btn btn-primary'>
+                  <Button
+                    type='submit'
+                    variant='primary'
+                    style={{ width: '50%' }}
+                  >
                     Submit
-                  </button>
+                  </Button>
                 </td>
               </tr>
             </tbody>

@@ -1,6 +1,6 @@
 import React from 'react'
 // import Dashboard from './components/dashboard/dashboard'
-import DesktopAudit from './components/dashboard/desktop/desktop'
+import DesktopAudit from './pages/desktop/desktop'
 // import './App.css'
 
 function App() {

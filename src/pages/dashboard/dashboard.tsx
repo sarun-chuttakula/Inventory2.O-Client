@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import MainNavbar from '../navbar/navbar'
+import MainNavbar from '../../components/navbar/navbar'
 import './styles.css' // Import the CSS file
 
 function Dashboard() {
