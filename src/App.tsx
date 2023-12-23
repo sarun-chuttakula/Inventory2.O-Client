@@ -1,11 +1,13 @@
 import React from 'react'
-import Dashboard from './components/dashboard'
+// import Dashboard from './components/dashboard/dashboard'
+import DesktopAudit from './components/dashboard/desktop/desktop'
 // import './App.css'
 
 function App() {
   return (
     <div className='App'>
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <DesktopAudit />
     </div>
   )
 }
