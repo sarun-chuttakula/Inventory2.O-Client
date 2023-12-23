@@ -69,6 +69,41 @@ enum StatusOptions {
   Working = 'Working',
   NotWorking = 'Not Working',
 }
+interface InputTextProps {
+  label: string
+  name: string
+  placeholder: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+const InputText: React.FC<InputTextProps> = ({
+  label,
+  name,
+  placeholder,
+  value,
+  onChange,
+}) => {
+  return (
+    <tr>
+      <td colSpan={2}>
+        <Form.Label>{label}:</Form.Label>
+      </td>
+      <td>
+        <InputGroup className='mb-3'>
+          <Form.Control
+            type='text'
+            placeholder={placeholder}
+            aria-label={name}
+            aria-describedby='basic-addon1'
+            name={name}
+            value={value}
+            onChange={onChange}
+          />
+        </InputGroup>
+      </td>
+    </tr>
+  )
+}
 
 interface FormData {
   make: MakeOptions
@@ -263,76 +298,41 @@ const DesktopAuditForm: React.FC = () => {
                   </Form.Select>
                 </td>
               </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Model Number:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Model Number'
-                      aria-label='Model'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Tag ID:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Tag ID'
-                      aria-label='TagID'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>HOD Tag:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the HOD Tag'
-                      aria-label='HODTag'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Location:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Location'
-                      aria-label='Location'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Serial Number:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Serial Number'
-                      aria-label='SerialNumber'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
+              <InputText
+                label='Model Number'
+                name='model'
+                placeholder='Enter the Model Number'
+                value={formData.model}
+                onChange={handleChange}
+              />
+              <InputText
+                label='Tag ID'
+                name='tagID'
+                placeholder='Enter the Tag ID'
+                value={formData.tagID}
+                onChange={handleChange}
+              />
+              <InputText
+                label='HOD Tag'
+                name='hodTag'
+                placeholder='Enter the HOD Tag'
+                value={formData.hodTag}
+                onChange={handleChange}
+              />
+              <InputText
+                label='Location'
+                name='location'
+                placeholder='Enter the Location'
+                value={formData.location}
+                onChange={handleChange}
+              />
+              <InputText
+                label='Serial Number'
+                name='serialNumber'
+                placeholder='Enter the Serial Number'
+                value={formData.serialNumber}
+                onChange={handleChange}
+              />
               <tr>
                 <td rowSpan={2}>
                   <Form.Label>MAC Address:</Form.Label>
@@ -386,84 +386,30 @@ const DesktopAuditForm: React.FC = () => {
                   <Form.Label>Processor:</Form.Label>
                 </td>
                 <td>
-                  {/* {selectedOS === 'Windows' ? (
-                    <>
-                      {Object.values(ProcessorOptions).map(
-                        (processorOption) => (
-                          <Form.Check
-                            key={processorOption}
-                            type='radio'
-                            label={processorOption}
-                            value={processorOption}
-                            checked={formData.processor === processorOption}
-                            onChange={handleProcessorChange}
-                          />
-                        ),
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      <Form.Check
-                        type='radio'
-                        label='M1'
-                        value='M1'
-                        checked={formData.processor === ProcessorOptions.M1}
-                        onChange={handleProcessorChange}
-                      />
-                      <Form.Check
-                        type='radio'
-                        label='M2'
-                        value='M2'
-                        checked={formData.processor === ProcessorOptions.M2}
-                        onChange={handleProcessorChange}
-                      />
-                    </>
-                  )} */}
                   <td>{renderProcessorOptions()}</td>
                 </td>
               </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Generation:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Generation'
-                      aria-label='Generation'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>OS Key:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the OS Key'
-                      aria-label='OSKey'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Hostname:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Hostname'
-                      aria-label='Hostname'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
+              <InputText
+                label='Generation'
+                name='generation'
+                placeholder='Enter the Generation'
+                value={formData.generation}
+                onChange={handleChange}
+              />
+              <InputText
+                label='OS Key'
+                name='osKey'
+                placeholder='Enter the OS Key'
+                value={formData.osKey}
+                onChange={handleChange}
+              />
+              <InputText
+                label='Hostname'
+                name='hostname'
+                placeholder='Enter the Hostname'
+                value={formData.hostname}
+                onChange={handleChange}
+              />
               <tr>
                 <td colSpan={2}>
                   <Form.Label>RAM:</Form.Label>
@@ -515,20 +461,13 @@ const DesktopAuditForm: React.FC = () => {
                   ))}
                 </td>
               </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>User:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the User'
-                      aria-label='User'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
+              <InputText
+                label='User'
+                name='user'
+                placeholder='Enter the User'
+                value={formData.user}
+                onChange={handleChange}
+              />
               <tr>
                 <td colSpan={2}>
                   <Form.Label>Status:</Form.Label>
@@ -546,34 +485,20 @@ const DesktopAuditForm: React.FC = () => {
                   ))}
                 </td>
               </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Remarks:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Remarks'
-                      aria-label='Remarks'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                  <Form.Label>Updated By:</Form.Label>
-                </td>
-                <td>
-                  <InputGroup className='mb-3'>
-                    <Form.Control
-                      placeholder='Enter the Updated By'
-                      aria-label='UpdatedBy'
-                      aria-describedby='basic-addon1'
-                    />
-                  </InputGroup>
-                </td>
-              </tr>
+              <InputText
+                label='Remarks'
+                name='remarks'
+                placeholder='Enter the Remarks'
+                value={formData.remarks}
+                onChange={handleChange}
+              />
+              <InputText
+                label='Updated By'
+                name='updatedBy'
+                placeholder='Enter the Updated By'
+                value={formData.updatedBy}
+                onChange={handleChange}
+              />
               <tr>
                 <td colSpan={3}>
                   <button type='submit' className='btn btn-primary'>
