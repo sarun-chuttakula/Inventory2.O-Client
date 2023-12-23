@@ -1,3 +1,16 @@
+#!/bin/bash
+
+# Specify the path where you want to create the files
+path="/Users/ch.sarun/Documents/MyCodes/Code/Projects/Inventory/client/src/enums"
+
+files=(
+  "desktop.tsx" "laptop.tsx" "printer.tsx"
+  "monitor.tsx" "tab.tsx" "keyboard.tsx"
+  "mouse.tsx" "router.tsx" "airpurifier.tsx"
+  "biometrix.tsx" "projector.tsx" "ups.tsx" "ac.tsx"
+)
+
+content="
 enum MakeOptions {
   Assembled = 'Assembled',
   Dell = 'Dell',
@@ -77,3 +90,21 @@ export {
   GraphicsOptions,
   StatusOptions,
 }
+"
+
+# Create enum files
+for file in "${files[@]}"
+do
+  echo "$content" > "$path/$file"
+done
+
+# Create index.tsx file
+index_content=""
+for file in "${files[@]}"
+do
+  base_name=$(basename -- "$file")
+  base_name_no_ext="${base_name%.tsx}"
+  index_content+="export * from './$base_name_no_ext'\n"
+done
+
+echo "$index_content" > "$path/index.tsx"

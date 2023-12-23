@@ -11,11 +11,11 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums/desktop'
+} from '../../enums'
 import InputText from '../../components/inputText/inputText'
-import { DesktopFormData } from '../../dtos'
+import { desktopFormData } from '../../dtos'
 const DesktopAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<DesktopFormData>({
+  const [formData, setFormData] = useState<desktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',

@@ -8,7 +8,7 @@ import {
   StatusOptions,
   OperatingSystem,
 } from '../enums'
-export interface desktopFormData {
+export interface routerFormData {
   make: MakeOptions
   city: CityOptions
   model: string
