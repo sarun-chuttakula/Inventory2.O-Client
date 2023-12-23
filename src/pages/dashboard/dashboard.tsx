@@ -8,7 +8,8 @@ import './styles.css'
 function Dashboard() {
   const data = [
     ['Desktop', 'Laptop', 'Printer'],
-    ['Monitor', 'Tab/IPAD/MOBILE', 'TV'],
+    // ['Monitor', 'Tab/IPAD/MOBILE', 'TV'],
+    ['Monitor', 'Tab', 'TV'],
     ['Keyboard', 'Mouse', 'Router'],
     ['Airpurifier', 'Biometrix', 'Projector'],
     ['UPS', 'AC'],

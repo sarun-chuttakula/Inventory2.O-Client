@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
 import MainNavbar from '../../components/navbar/navbar'
-import './desktop.css'
+import './tv.css'
 import {
   MakeOptions,
   CityOptions,
@@ -13,9 +13,9 @@ import {
   StatusOptions,
 } from '../../enums'
 import InputText from '../../components/inputText/inputText'
-import { desktopFormData } from '../../dtos'
-const DesktopAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<desktopFormData>({
+import { tvFormData } from '../../dtos'
+const TvAuditForm: React.FC = () => {
+  const [formData, setFormData] = useState<tvFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,7 +50,7 @@ const DesktopAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/Desktop/register', {
+      fetch('http://localhost:5000/tv/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -150,8 +150,8 @@ const DesktopAuditForm: React.FC = () => {
     <>
       <MainNavbar />
       <div>
-        <h1 className='center-heading'>DESKTOP AUDIT</h1>
-        <form action='/Desktop/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>TV AUDIT</h1>
+        <form action='/tv/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -413,4 +413,4 @@ const DesktopAuditForm: React.FC = () => {
   )
 }
 
-export default DesktopAuditForm
+export default TvAuditForm

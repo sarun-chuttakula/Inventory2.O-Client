@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
 import MainNavbar from '../../components/navbar/navbar'
-import './desktop.css'
+import './keyboard.css'
 import {
   MakeOptions,
   CityOptions,
@@ -13,9 +13,9 @@ import {
   StatusOptions,
 } from '../../enums'
 import InputText from '../../components/inputText/inputText'
-import { desktopFormData } from '../../dtos'
-const DesktopAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<desktopFormData>({
+import { keyboardFormData } from '../../dtos'
+const KeyboardAuditForm: React.FC = () => {
+  const [formData, setFormData] = useState<keyboardFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,7 +50,7 @@ const DesktopAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/Desktop/register', {
+      fetch('http://localhost:5000/keyboard/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -150,8 +150,8 @@ const DesktopAuditForm: React.FC = () => {
     <>
       <MainNavbar />
       <div>
-        <h1 className='center-heading'>DESKTOP AUDIT</h1>
-        <form action='/Desktop/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>KEYBOARD AUDIT</h1>
+        <form action='/keyboard/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -413,4 +413,4 @@ const DesktopAuditForm: React.FC = () => {
   )
 }
 
-export default DesktopAuditForm
+export default KeyboardAuditForm

@@ -1,7 +1,30 @@
-import React, { useState } from 'react'
+#!/bin/bash
+
+# Specify the path where you want to replace files
+path="/Users/ch.sarun/Documents/MyCodes/Code/Projects/Inventory/client/src/pages"
+
+# List of files to be created or updated
+files=(
+  "desktop.tsx" "laptop.tsx" "printer.tsx"
+  "monitor.tsx" "tab.tsx" "keyboard.tsx"
+  "mouse.tsx" "router.tsx" "airpurifier.tsx"
+  "biometrix.tsx" "projector.tsx" "ups.tsx" "ac.tsx"
+)
+
+# Loop through each folder
+for folder in "$path"/*/
+do
+  # Extract the folder name
+  folder_name=$(basename "$folder")
+
+  # Loop through each file in the files array
+  for file in "${files[@]}"
+  do
+    # Generate content based on the file type
+    content="import React, { useState } from 'react'
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
 import MainNavbar from '../../components/navbar/navbar'
-import './desktop.css'
+import './${folder_name}.css'
 import {
   MakeOptions,
   CityOptions,
@@ -13,8 +36,8 @@ import {
   StatusOptions,
 } from '../../enums'
 import InputText from '../../components/inputText/inputText'
-import { desktopFormData } from '../../dtos'
-const DesktopAuditForm: React.FC = () => {
+import { ${folder_name}FormData } from '../../dtos'
+const ${folder_name}AuditForm: React.FC = () => {
   const [formData, setFormData] = useState<desktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
@@ -48,16 +71,6 @@ const DesktopAuditForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
-    try {
-      fetch('http://localhost:5000/Desktop/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-    } catch (err) {
-      console.log(err)
-    }
     msg()
   }
   //for radio button of status
@@ -150,7 +163,7 @@ const DesktopAuditForm: React.FC = () => {
     <>
       <MainNavbar />
       <div>
-        <h1 className='center-heading'>DESKTOP AUDIT</h1>
+        <h1 className='center-heading'>{`${folder_name.toUpperCase()} AUDIT`}</h1>
         <form action='/Desktop/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
@@ -413,4 +426,9 @@ const DesktopAuditForm: React.FC = () => {
   )
 }
 
-export default DesktopAuditForm
+export default ${folder_name}AuditForm"
+
+    # Write the content to the file
+    echo "$content" > "$folder/$file"
+  done
+done
