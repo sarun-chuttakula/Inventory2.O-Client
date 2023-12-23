@@ -30,7 +30,6 @@ const InputText: React.FC<InputTextProps> = ({
             name={name}
             value={value}
             onChange={onChange}
-            style={{ width: '70%' }}
           />
         </InputGroup>
       </td>

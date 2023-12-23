@@ -1,9 +1,9 @@
 // Dashboard.jsx
-
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
 import MainNavbar from '../../components/navbar/navbar'
-import './styles.css' // Import the CSS file
+import './styles.css'
 
 function Dashboard() {
   const data = [
@@ -24,12 +24,13 @@ function Dashboard() {
             <tr key={rowIndex}>
               {row.map((item, colIndex) => (
                 <td key={colIndex}>
-                  <a
+                  <Link
+                    to={`/${item.toLowerCase()}`} // Use the item as part of the route
                     className='btn btn-xl btn-outline-dark btn-info text-primary'
                     role='button'
                   >
                     {item}
-                  </a>
+                  </Link>
                 </td>
               ))}
             </tr>
