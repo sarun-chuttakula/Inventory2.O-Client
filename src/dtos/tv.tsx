@@ -22,7 +22,7 @@ export interface tvFormData {
   generation: string
   os: OperatingSystem
   osKey: string
-  hostname: string
+  ScreenSize: string
   ram: RAMOptions
   storage: StorageOptions
   graphics: GraphicsOptions

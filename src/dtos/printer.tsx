@@ -22,7 +22,7 @@ export interface printerFormData {
   generation: string
   os: OperatingSystem
   osKey: string
-  hostname: string
+  desktopinkjet: string
   ram: RAMOptions
   storage: StorageOptions
   graphics: GraphicsOptions
