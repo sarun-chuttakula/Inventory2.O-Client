@@ -14,21 +14,23 @@ import {
 } from '../../enums'
 import InputText from '../../components/inputText/inputText'
 import { desktopFormData } from '../../dtos'
+import apiService from '../../api/apiService'
+import httpStatus from 'http-status'
 const DesktopAuditForm: React.FC = () => {
   const [formData, setFormData] = useState<desktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
-    tagID: '',
-    hodTag: '',
+    tagid: '',
+    hodtag: '',
     location: '',
-    serialNumber: '',
-    lan: '',
-    wifi: '',
+    serialnumber: '',
+    macid_lan: '',
+    macid_wifi: '',
     processor: ProcessorOptions.Corei3,
     generation: '',
     os: OperatingSystem.Windows,
-    osKey: '',
+    oskey: '',
     hostname: '',
     ram: RAMOptions.GB4,
     storage: StorageOptions.GB64,
@@ -36,7 +38,7 @@ const DesktopAuditForm: React.FC = () => {
     user: '',
     status: StatusOptions.Working,
     remarks: '',
-    updatedBy: '',
+    updatedbyname: '',
   })
 
   const handleChange = (
@@ -46,20 +48,48 @@ const DesktopAuditForm: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
+
     try {
-      fetch('http://localhost:5000/Desktop/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-    } catch (err) {
-      console.log(err)
+      const { status, data } = await apiService.postDesktopData(
+        formData,
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzMWQxNGFiLTIyZDEtNDVkZS1hN2UxLTA0Nzk5Y2YzYTQ0MCIsInJvbGUiOiJzdXBlcmFkbWluIiwidXVpZCI6IjM5ZGI4NmUwLWY3NGUtNGIwOC04YjlmLWQ3N2ViNzNkMWY3YSIsImV4cCI6MTcwNjIwNDM5OSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcwNjIwMDc5OX0.g1TLQD1ApwldzpBuR_z0r5hM4DKadQTyBsVZY7Acg5s',
+      )
+
+      if (status === httpStatus.CREATED) {
+        msg()
+        console.log(data)
+
+        setFormData({
+          make: MakeOptions.Assembled,
+          city: CityOptions.Hyderabad,
+          model: '',
+          tagid: '',
+          hodtag: '',
+          location: '',
+          serialnumber: '',
+          macid_lan: '',
+          macid_wifi: '',
+          processor: ProcessorOptions.Corei3,
+          generation: '',
+          os: OperatingSystem.Windows,
+          oskey: '',
+          hostname: '',
+          ram: RAMOptions.GB4,
+          storage: StorageOptions.GB64,
+          graphics: GraphicsOptions.GB2,
+          user: '',
+          status: StatusOptions.Working,
+          remarks: '',
+          updatedbyname: '',
+        })
+      }
+    } catch (error) {
+      console.error('Error:', error)
     }
-    msg()
   }
+
   //for radio button of status
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevData) => ({
@@ -203,16 +233,16 @@ const DesktopAuditForm: React.FC = () => {
               />
               <InputText
                 label='Tag ID'
-                name='tagID'
+                name='tagid'
                 placeholder='Enter the Tag ID'
-                value={formData.tagID}
+                value={formData.tagid}
                 onChange={handleChange}
               />
               <InputText
                 label='HOD Tag'
-                name='hodTag'
+                name='hodtag'
                 placeholder='Enter the HOD Tag'
-                value={formData.hodTag}
+                value={formData.hodtag}
                 onChange={handleChange}
               />
               <InputText
@@ -224,9 +254,9 @@ const DesktopAuditForm: React.FC = () => {
               />
               <InputText
                 label='Serial Number'
-                name='serialNumber'
+                name='serialnumber'
                 placeholder='Enter the Serial Number'
-                value={formData.serialNumber}
+                value={formData.serialnumber}
                 onChange={handleChange}
               />
               <tr>
@@ -292,9 +322,9 @@ const DesktopAuditForm: React.FC = () => {
               />
               <InputText
                 label='OS Key'
-                name='osKey'
+                name='oskey'
                 placeholder='Enter the OS Key'
-                value={formData.osKey}
+                value={formData.oskey}
                 onChange={handleChange}
               />
               <InputText
@@ -388,9 +418,9 @@ const DesktopAuditForm: React.FC = () => {
               />
               <InputText
                 label='Updated By'
-                name='updatedBy'
+                name='updatedbyname'
                 placeholder='Enter the Updated By'
-                value={formData.updatedBy}
+                value={formData.updatedbyname}
                 onChange={handleChange}
               />
               <tr>
