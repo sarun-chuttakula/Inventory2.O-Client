@@ -1,22 +1,22 @@
 import React from 'react'
 // import Dashboard from './components/dashboard/dashboard'
-import AcAudit from './pages/ac/ac'
-import AirpurifierAudit from './pages/airpurifier/airpurifier'
-import BiometrixAudit from './pages/biometrix/biometrix'
-import DesktopAudit from './pages/desktop/desktop'
-import KeyboardAudit from './pages/keyboard/keyboard'
-import LaptopAudit from './pages/laptop/laptop'
-import MonitorAudit from './pages/monitor/monitor'
-import TabAudit from './pages/tab/tab'
-import TvAudit from './pages/tv/tv'
-import MouseAudit from './pages/mouse/mouse'
-import PrinterAudit from './pages/printer/printer'
-import ProjectorAudit from './pages/projector/projector'
-import RouterAudit from './pages/router/router'
-import UpsAudit from './pages/ups/ups'
+import AcAudit from './pages/ac'
+import AirpurifierAudit from './pages/airpurifier'
+import BiometrixAudit from './pages/biometrix'
+import DesktopAudit from './pages/desktop'
+import KeyboardAudit from './pages/keyboard'
+import LaptopAudit from './pages/laptop'
+import MonitorAudit from './pages/monitor'
+import TabAudit from './pages/tab'
+import TvAudit from './pages/tv'
+import MouseAudit from './pages/mouse'
+import PrinterAudit from './pages/printer'
+import ProjectorAudit from './pages/projector'
+import RouterAudit from './pages/router'
+import UpsAudit from './pages/ups'
 // import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Dashboard from './pages/dashboard/dashboard'
+import Dashboard from './pages/dashboard'
 import { Role } from './enums'
 import RequireAuth from './components/RequireAuth'
 import Layout from './components/Layout'
@@ -25,11 +25,13 @@ import LoginScreen from './pages/Login'
 import SignupScreen from './pages/Signup'
 import Unauthorized from './components/Unauthorized'
 import Missing from './components/Missing'
+import MainNavbar from './components/navbar/navbar'
 
 function App() {
   const auth = useAuth()
   return (
     <div className='App'>
+      {auth && <MainNavbar />}
       <Routes>
         <Route path='/' element={<Layout />}>
           {/* public routes */}

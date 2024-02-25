@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './keyboard.css'
+import '../styles/ac.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,15 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { keyboardFormData } from '../../dtos'
-const KeyboardAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<keyboardFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { acFormData } from '../dtos'
+import { createAc } from '../api/ac.api'
+import useAuth from '../hooks/useAuth'
+const AcAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<acFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,11 +53,7 @@ const KeyboardAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/keyboard/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createAc(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,10 +74,9 @@ const KeyboardAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>KEYBOARD AUDIT</h1>
-        <form action='/keyboard/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>AC AUDIT</h1>
+        <form action='/ac/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -214,4 +212,4 @@ const KeyboardAuditForm: React.FC = () => {
   )
 }
 
-export default KeyboardAuditForm
+export default AcAuditForm

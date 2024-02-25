@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './ac.css'
+import '../styles/tab.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,15 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { acFormData } from '../../dtos'
-const AcAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<acFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { tabFormData } from '../dtos'
+import useAuth from '../hooks/useAuth'
+import { createTab } from '../api/tab.api'
+const TabAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<tabFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,11 +53,7 @@ const AcAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/ac/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createTab(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,10 +74,9 @@ const AcAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>AC AUDIT</h1>
-        <form action='/ac/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>TAB AUDIT</h1>
+        <form action='/tab/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -214,4 +212,4 @@ const AcAuditForm: React.FC = () => {
   )
 }
 
-export default AcAuditForm
+export default TabAuditForm

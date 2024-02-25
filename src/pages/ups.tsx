@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './tv.css'
+import '../styles/ups.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,15 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { tvFormData } from '../../dtos'
-const TvAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<tvFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { upsFormData } from '../dtos'
+import useAuth from '../hooks/useAuth'
+import { createUps } from '../api/ups.api'
+const UpsAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<upsFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -29,7 +32,7 @@ const TvAuditForm: React.FC = () => {
     generation: '',
     os: OperatingSystem.Windows,
     osKey: '',
-    ScreenSize: '',
+    hostname: '',
     ram: RAMOptions.GB4,
     storage: StorageOptions.GB64,
     graphics: GraphicsOptions.GB2,
@@ -50,11 +53,7 @@ const TvAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/tv/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createUps(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,10 +74,9 @@ const TvAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>TV AUDIT</h1>
-        <form action='/tv/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>UPS AUDIT</h1>
+        <form action='/ups/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -157,13 +155,6 @@ const TvAuditForm: React.FC = () => {
                 onChange={handleChange}
               />
               <InputText
-                label='ScreenSize'
-                name='desktopinkjet'
-                placeholder='Enter the ScreenSize'
-                value={formData.ScreenSize}
-                onChange={handleChange}
-              />
-              <InputText
                 label='User'
                 name='user'
                 placeholder='Enter the User'
@@ -221,4 +212,4 @@ const TvAuditForm: React.FC = () => {
   )
 }
 
-export default TvAuditForm
+export default UpsAuditForm

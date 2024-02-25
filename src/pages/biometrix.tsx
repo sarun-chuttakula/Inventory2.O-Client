@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './mouse.css'
+import '../styles/styles.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,16 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { mouseFormData } from '../../dtos'
-const MouseAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<mouseFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { biometrixFormData } from '../dtos'
+import useAuth from '../hooks/useAuth'
+import { create } from 'domain'
+import { createBiometrix } from '../api/biometrix.api'
+const BiometrixAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<biometrixFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,11 +54,7 @@ const MouseAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/mouse/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createBiometrix(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,10 +75,13 @@ const MouseAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>MOUSE AUDIT</h1>
-        <form action='/mouse/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>BIOMETRIX AUDIT</h1>
+        <form
+          action='/biometrix/register'
+          method='POST'
+          onSubmit={handleSubmit}
+        >
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -214,4 +217,4 @@ const MouseAuditForm: React.FC = () => {
   )
 }
 
-export default MouseAuditForm
+export default BiometrixAuditForm

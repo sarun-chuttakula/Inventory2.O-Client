@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './printer.css'
+import '../styles/airpurifier.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,16 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { printerFormData } from '../../dtos'
-const PrinterAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<printerFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { airpurifierFormData } from '../dtos'
+import { create } from 'domain'
+import { createAirpurifier } from '../api/airpurifier.api'
+import useAuth from '../hooks/useAuth'
+const AirpurifierAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<airpurifierFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -29,7 +33,7 @@ const PrinterAuditForm: React.FC = () => {
     generation: '',
     os: OperatingSystem.Windows,
     osKey: '',
-    desktopinkjet: '',
+    hostname: '',
     ram: RAMOptions.GB4,
     storage: StorageOptions.GB64,
     graphics: GraphicsOptions.GB2,
@@ -50,11 +54,7 @@ const PrinterAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/printer/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createAirpurifier(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,10 +75,13 @@ const PrinterAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>PRINTER AUDIT</h1>
-        <form action='/printer/register' method='POST' onSubmit={handleSubmit}>
+        <h1 className='center-heading'>AIRPURIFIER AUDIT</h1>
+        <form
+          action='/airpurifier/register'
+          method='POST'
+          onSubmit={handleSubmit}
+        >
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -126,13 +129,6 @@ const PrinterAuditForm: React.FC = () => {
                 name='model'
                 placeholder='Enter the Model Number'
                 value={formData.model}
-                onChange={handleChange}
-              />
-              <InputText
-                label='DESKTOP/INKJET'
-                name='desktopinkjet'
-                placeholder='Enter the DESKTOP/INKJET'
-                value={formData.desktopinkjet}
                 onChange={handleChange}
               />
               <InputText
@@ -221,4 +217,4 @@ const PrinterAuditForm: React.FC = () => {
   )
 }
 
-export default PrinterAuditForm
+export default AirpurifierAuditForm

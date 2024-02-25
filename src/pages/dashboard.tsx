@@ -2,10 +2,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './styles.css'
+import '../styles/styles.css'
+import { useSelector } from 'react-redux'
+import useAuth from '../hooks/useAuth'
 
 function Dashboard() {
+  const auth = useAuth()
+  console.log('Auth:', auth)
+  const userData = useSelector((state: any) => state.user.userData)
+  console.log('userData', userData)
+
   const data = [
     ['Desktop', 'Laptop', 'Printer'],
     // ['Monitor', 'Tab/IPAD/MOBILE', 'TV'],
@@ -17,7 +23,6 @@ function Dashboard() {
 
   return (
     <>
-      <MainNavbar />
       <h3 className='center-heading'>INVENTORY AUDIT SHEET</h3>
       <Table bordered>
         <tbody>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './desktop.css'
+import '../styles/desktop.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,12 +10,14 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { desktopFormData } from '../../dtos'
-import apiService from '../../api/apiService'
-import httpStatus from 'http-status'
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { desktopFormData } from '../dtos'
+import { createDesktop } from '../api/desktop.api'
+import useAuth from '../hooks/useAuth'
 const DesktopAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
   const [formData, setFormData] = useState<desktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
@@ -52,39 +53,15 @@ const DesktopAuditForm: React.FC = () => {
     e.preventDefault()
 
     try {
-      const { status, data } = await apiService.postDesktopData(
-        formData,
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzMWQxNGFiLTIyZDEtNDVkZS1hN2UxLTA0Nzk5Y2YzYTQ0MCIsInJvbGUiOiJzdXBlcmFkbWluIiwidXVpZCI6IjM5ZGI4NmUwLWY3NGUtNGIwOC04YjlmLWQ3N2ViNzNkMWY3YSIsImV4cCI6MTcwNjIwNDM5OSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcwNjIwMDc5OX0.g1TLQD1ApwldzpBuR_z0r5hM4DKadQTyBsVZY7Acg5s',
-      )
-
-      if (status === httpStatus.CREATED) {
-        msg()
-        console.log(data)
-
-        setFormData({
-          make: MakeOptions.Assembled,
-          city: CityOptions.Hyderabad,
-          model: '',
-          tagid: '',
-          hodtag: '',
-          location: '',
-          serialnumber: '',
-          macid_lan: '',
-          macid_wifi: '',
-          processor: ProcessorOptions.Corei3,
-          generation: '',
-          os: OperatingSystem.Windows,
-          oskey: '',
-          hostname: '',
-          ram: RAMOptions.GB4,
-          storage: StorageOptions.GB64,
-          graphics: GraphicsOptions.GB2,
-          user: '',
-          status: StatusOptions.Working,
-          remarks: '',
-          updatedbyname: '',
-        })
-      }
+      createDesktop(token, formData).then((data) => {
+        console.log('Data:', data)
+        if (data.success) {
+          console.log('Data:', data)
+          alert('Your response is submitted')
+        } else {
+          console.log('Error:', data)
+        }
+      })
     } catch (error) {
       console.error('Error:', error)
     }
@@ -171,14 +148,8 @@ const DesktopAuditForm: React.FC = () => {
     ))
   }
 
-  //for alert message
-  const msg = () => {
-    alert('Your response is submitted')
-  }
-
   return (
     <>
-      <MainNavbar />
       <div>
         <h1 className='center-heading'>DESKTOP AUDIT</h1>
         <form action='/Desktop/register' method='POST' onSubmit={handleSubmit}>

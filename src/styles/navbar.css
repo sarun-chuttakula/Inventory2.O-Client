@@ -1,0 +1,18 @@
+/* styles.css */
+.navbar {
+  background-color: black;
+  color: white;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.dropdown-menu {
+  background-color: black;
+}
+
+.dropdown-menu a {
+  color: white !important;
+}

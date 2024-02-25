@@ -1,46 +1,87 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import '../../styles/navbar.css'
 
 function MainNavbar() {
   return (
-    <Navbar expand='lg' className='navbar-light bg-dark'>
-      <Container>
-        <Navbar.Brand href='/' className='navbar-brand text-light'>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+      <div className='container'>
+        <a href='/' className='navbar-brand'>
           XELP
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='me-auto'>
-            <Nav.Link href='/' className='text-light'>
-              HOME
-            </Nav.Link>
-            <NavDropdown
-              title='ITEMS'
-              id='basic-nav-dropdown'
-              className='text-white'
-            >
-              <NavDropdown.Item href='/laptop'>Laptop</NavDropdown.Item>
-              <NavDropdown.Item href='/desktop'>Desktop</NavDropdown.Item>
-              <NavDropdown.Item href='/monitor'>Monitor</NavDropdown.Item>
-              <NavDropdown.Item href='/keyboard'>Keyboard</NavDropdown.Item>
-              <NavDropdown.Item href='/mouse'>Mouse</NavDropdown.Item>
-              <NavDropdown.Item href='/tab'>Tab/iPad/Mobile</NavDropdown.Item>
-              <NavDropdown.Item href='/printer'>Printer</NavDropdown.Item>
-              <NavDropdown.Item href='/router'>Router</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href='/fetch' className='text-light'>
-              Fetch
-            </Nav.Link>
-            <Nav.Link href='/logout' className='text-light'>
-              Logout
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        </a>
+        <button
+          className='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span className='navbar-toggler-icon'></span>
+        </button>
+        <div className='collapse navbar-collapse' id='navbarNav'>
+          <ul className='navbar-nav me-auto'>
+            <li className='nav-item'>
+              <a href='/' className='nav-link'>
+                HOME
+              </a>
+            </li>
+            <li className='nav-item dropdown'>
+              <a
+                className='nav-link dropdown-toggle'
+                href='/items'
+                id='navbarDropdownMenuLink'
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-haspopup='true'
+                aria-expanded='false'
+              >
+                ITEMS
+              </a>
+              <div
+                className='dropdown-menu'
+                aria-labelledby='navbarDropdownMenuLink'
+              >
+                <a className='dropdown-item' href='/laptop'>
+                  Laptop
+                </a>
+                <a className='dropdown-item' href='/desktop'>
+                  Desktop
+                </a>
+                <a className='dropdown-item' href='/monitor'>
+                  Monitor
+                </a>
+                <a className='dropdown-item' href='/keyboard'>
+                  Keyboard
+                </a>
+                <a className='dropdown-item' href='/mouse'>
+                  Mouse
+                </a>
+                <a className='dropdown-item' href='/tab'>
+                  Tab/iPad/Mobile
+                </a>
+                <a className='dropdown-item' href='/printer'>
+                  Printer
+                </a>
+                <a className='dropdown-item' href='/router'>
+                  Router
+                </a>
+              </div>
+            </li>
+            <li className='nav-item'>
+              <a href='/fetch' className='nav-link'>
+                Fetch
+              </a>
+            </li>
+            <li className='nav-item'>
+              <a href='/logout' className='nav-link'>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   )
 }
 

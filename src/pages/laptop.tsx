@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, InputGroup, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './laptop.css'
+import '../styles/laptop.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,10 +10,14 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { laptopFormData } from '../../dtos'
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { laptopFormData } from '../dtos'
+import useAuth from '../hooks/useAuth'
+import { createLaptop } from '../api/laptop.api'
 const LaptopAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
   const [formData, setFormData] = useState<laptopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
@@ -50,11 +53,7 @@ const LaptopAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/laptop/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createLaptop(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -148,7 +147,6 @@ const LaptopAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
         <h1 className='center-heading'>LAPTOP AUDIT</h1>
         <form action='/laptop/register' method='POST' onSubmit={handleSubmit}>

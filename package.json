@@ -30,7 +30,8 @@
     "format": "prettier --write .",
     "check": "prettier --check .",
     "lint": "eslint src --fix",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import MainNavbar from '../../components/navbar/navbar'
-import './projector.css'
+import '../styles/keyboard.css'
 import {
   MakeOptions,
   CityOptions,
@@ -11,11 +10,15 @@ import {
   StorageOptions,
   GraphicsOptions,
   StatusOptions,
-} from '../../enums'
-import InputText from '../../components/inputText/inputText'
-import { projectorFormData } from '../../dtos'
-const ProjectorAuditForm: React.FC = () => {
-  const [formData, setFormData] = useState<projectorFormData>({
+} from '../enums'
+import InputText from '../components/inputText/inputText'
+import { keyboardFormData } from '../dtos'
+import useAuth from '../hooks/useAuth'
+import { createKeyboard } from '../api/keyboard.api'
+const KeyboardAuditForm: React.FC = () => {
+  const auth = useAuth()
+  const token = auth?.accesstoken as string
+  const [formData, setFormData] = useState<keyboardFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
@@ -50,11 +53,7 @@ const ProjectorAuditForm: React.FC = () => {
     e.preventDefault()
     console.log(formData)
     try {
-      fetch('http://localhost:5000/projector/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      createKeyboard(token, formData)
     } catch (err) {
       console.log(err)
     }
@@ -75,14 +74,9 @@ const ProjectorAuditForm: React.FC = () => {
 
   return (
     <>
-      <MainNavbar />
       <div>
-        <h1 className='center-heading'>PROJECTOR AUDIT</h1>
-        <form
-          action='/projector/register'
-          method='POST'
-          onSubmit={handleSubmit}
-        >
+        <h1 className='center-heading'>KEYBOARD AUDIT</h1>
+        <form action='/keyboard/register' method='POST' onSubmit={handleSubmit}>
           <Table bordered className='custom-table'>
             <tbody>
               <tr>
@@ -218,4 +212,4 @@ const ProjectorAuditForm: React.FC = () => {
   )
 }
 
-export default ProjectorAuditForm
+export default KeyboardAuditForm
