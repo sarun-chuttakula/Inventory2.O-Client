@@ -29,7 +29,9 @@ module.exports = {
     },
   },
   plugins: ['@typescript-eslint', 'react'],
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
   settings: {
     react: {
       version: 'detect', // Automatically detect React version
