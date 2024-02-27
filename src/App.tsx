@@ -16,7 +16,7 @@ import RouterAudit from './pages/router'
 import UpsAudit from './pages/ups'
 // import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Dashboard from './pages/dashboard'
+import Dashboard from './pages/ITdashboard'
 import { Role } from './enums'
 import RequireAuth from './components/RequireAuth'
 import Layout from './components/Layout'
@@ -26,6 +26,9 @@ import SignupScreen from './pages/Signup'
 import Unauthorized from './components/Unauthorized'
 import Missing from './components/Missing'
 import MainNavbar from './components/navbar/navbar'
+import Main from './pages/main'
+import PurchaseDashboard from './pages/PurchaseDashboard'
+import PurchaseRegister from './pages/purchase-register'
 
 function App() {
   const auth = useAuth()
@@ -58,7 +61,10 @@ function App() {
               />
             }
           >
-            <Route path='/' element={<Dashboard />} />
+            <Route path='/' element={<Main />} />
+            <Route path='/it-dasboard' element={<Dashboard />} />
+            <Route path='/purchase-dashboard' element={<PurchaseDashboard />} />
+            <Route path='/PurchaseRegister' element={<PurchaseRegister />} />
             <Route path='/ac' element={<AcAudit />} />
             <Route path='/airpurifier' element={<AirpurifierAudit />} />
             <Route path='/biometrix' element={<BiometrixAudit />} />
