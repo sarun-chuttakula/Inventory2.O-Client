@@ -1,0 +1,27 @@
+.main-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  color: #333;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.card-title:hover {
+  color: #007bff;
+}

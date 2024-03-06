@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/main.css'
 
 export default function Main() {
   return (
-    <>
+    <div className='main-box'>
       <div className='card'>
         <div className='card-body'>
           <a href='/purchase-dashboard' className='card-title'>
@@ -13,11 +14,11 @@ export default function Main() {
 
       <div className='card'>
         <div className='card-body'>
-          <a href='/it-dasboard' className='card-title'>
+          <a href='/it-dashboard' className='card-title'>
             IT Dashboard
           </a>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,47 +1,42 @@
-/* body {
-  background-color: powderblue;
-} */
-
-.container {
+/* Styles for PurchaseRegister component */
+.purchase-container {
   font-family: Arial, sans-serif;
   margin: 20px;
 }
 
-h1 {
+.purchase-title {
   color: #333;
   text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-form {
+.purchase-form {
   max-width: 600px;
   margin: auto;
 }
 
-label {
+.purchase-label {
   margin-bottom: 8px;
 }
 
-select,
-input,
-textarea {
+.purchase-element {
   margin-bottom: 16px;
 }
 
-table {
+.purchase-table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
 }
 
-th,
-td {
+.purchase-header,
+.purchase-data {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
 
-th {
+.purchase-header {
   background-color: #f2f2f2;
 }

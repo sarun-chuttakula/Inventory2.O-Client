@@ -16,8 +16,8 @@ function PurchaseRegister() {
 
   return (
     <>
-      <h1>Purchase Register</h1>
-      <form onSubmit={handleSubmit} id='dataForm'>
+      <h1 className='purchase-title'>Purchase Register</h1>
+      <form onSubmit={handleSubmit} className='purchase-form' id='dataForm'>
         <div className='form-group'>
           <h2>
             <label htmlFor='branch'>City (Branch):</label>

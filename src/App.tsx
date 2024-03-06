@@ -62,7 +62,7 @@ function App() {
             }
           >
             <Route path='/' element={<Main />} />
-            <Route path='/it-dasboard' element={<Dashboard />} />
+            <Route path='/it-dashboard' element={<Dashboard />} />
             <Route path='/purchase-dashboard' element={<PurchaseDashboard />} />
             <Route path='/PurchaseRegister' element={<PurchaseRegister />} />
             <Route path='/ac' element={<AcAudit />} />
