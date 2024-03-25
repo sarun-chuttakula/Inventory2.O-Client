@@ -16,8 +16,8 @@ import { upsFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createUps } from '../api/ups.api'
 const UpsAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<upsFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

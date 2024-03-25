@@ -1,7 +1,13 @@
 import React from 'react'
 import '../../styles/navbar.css'
+import useAuth from '../../hooks/useAuth'
 
 function MainNavbar() {
+  const { logout } = useAuth()
+  const handleLogout = () => {
+    console.log('Logging out')
+    logout()
+  }
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
@@ -69,14 +75,14 @@ function MainNavbar() {
               </div>
             </li>
             <li className='nav-item'>
-              <a href='/fetch' className='nav-link'>
+              <a href='/fetch-assets' className='nav-link'>
                 Fetch
               </a>
             </li>
             <li className='nav-item'>
-              <a href='/logout' className='nav-link'>
+              <button className='nav-link' onClick={handleLogout}>
                 Logout
-              </a>
+              </button>
             </li>
           </ul>
         </div>

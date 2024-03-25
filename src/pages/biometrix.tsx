@@ -14,11 +14,11 @@ import {
 import InputText from '../components/inputText/inputText'
 import { biometrixFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
-import { create } from 'domain'
+
 import { createBiometrix } from '../api/biometrix.api'
 const BiometrixAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<biometrixFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

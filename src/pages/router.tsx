@@ -16,8 +16,8 @@ import { routerFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createRouter } from '../api/router.api'
 const RouterAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<routerFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

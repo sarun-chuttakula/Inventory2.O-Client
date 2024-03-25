@@ -16,8 +16,8 @@ import { acFormData } from '../dtos'
 import { createAc } from '../api/ac.api'
 import useAuth from '../hooks/useAuth'
 const AcAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<acFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

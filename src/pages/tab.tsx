@@ -16,8 +16,8 @@ import { tabFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createTab } from '../api/tab.api'
 const TabAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<tabFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

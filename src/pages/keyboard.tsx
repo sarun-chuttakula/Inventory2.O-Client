@@ -16,8 +16,8 @@ import { keyboardFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createKeyboard } from '../api/keyboard.api'
 const KeyboardAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<keyboardFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

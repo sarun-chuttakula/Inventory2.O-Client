@@ -14,11 +14,11 @@ import {
 import InputText from '../components/inputText/inputText'
 import { tvFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
-import { create } from 'domain'
+
 import { createTV } from '../api/tv.api'
 const TvAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<tvFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

@@ -13,12 +13,12 @@ import {
 } from '../enums'
 import InputText from '../components/inputText/inputText'
 import { airpurifierFormData } from '../dtos'
-import { create } from 'domain'
+
 import { createAirpurifier } from '../api/airpurifier.api'
 import useAuth from '../hooks/useAuth'
 const AirpurifierAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<airpurifierFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

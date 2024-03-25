@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ApiResponse } from '../dtos/response.dto'
 import { Register } from '../api'
+import '../styles/signup.css'
 
 const SignupScreen: React.FC = () => {
   const navigate = useNavigate()

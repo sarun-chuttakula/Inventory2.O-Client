@@ -16,8 +16,8 @@ import { laptopFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createLaptop } from '../api/laptop.api'
 const LaptopAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<laptopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

@@ -29,22 +29,22 @@ import MainNavbar from './components/navbar/navbar'
 import Main from './pages/main'
 import PurchaseDashboard from './pages/PurchaseDashboard'
 import PurchaseRegister from './pages/purchase-register'
-
+import FetchAssets from './pages/fetchAssets'
 function App() {
-  const auth = useAuth()
+  const { authData } = useAuth()
   return (
     <div className='App'>
-      {auth && <MainNavbar />}
+      {authData && <MainNavbar />}
       <Routes>
         <Route path='/' element={<Layout />}>
           {/* public routes */}
           <Route
             path='/login'
-            element={auth ? <Navigate to='/' /> : <LoginScreen />}
+            element={authData ? <Navigate to='/' /> : <LoginScreen />}
           />
           <Route
             path='*'
-            element={!auth ? <Navigate to='/login' /> : <Missing />}
+            element={!authData ? <Navigate to='/login' /> : <Missing />}
           />
           {/* <Route path="/auth0-callback" element={<Auth0Callback />} /> */}
           <Route path='/signup' element={<SignupScreen />} />
@@ -62,9 +62,9 @@ function App() {
             }
           >
             <Route path='/' element={<Main />} />
-            <Route path='/it-dashboard' element={<Dashboard />} />
             <Route path='/purchase-dashboard' element={<PurchaseDashboard />} />
             <Route path='/PurchaseRegister' element={<PurchaseRegister />} />
+            <Route path='/it-dashboard' element={<Dashboard />} />
             <Route path='/ac' element={<AcAudit />} />
             <Route path='/airpurifier' element={<AirpurifierAudit />} />
             <Route path='/biometrix' element={<BiometrixAudit />} />
@@ -79,6 +79,7 @@ function App() {
             <Route path='/tab' element={<TabAudit />} />
             <Route path='/tv' element={<TvAudit />} />
             <Route path='/ups' element={<UpsAudit />} />
+            <Route path='fetch-assets' element={<FetchAssets />} />
           </Route>
         </Route>
         {/* we want to protect these routes */}

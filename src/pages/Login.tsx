@@ -6,6 +6,7 @@ import { Login } from '../api'
 import { ApiResponse } from '../dtos/response.dto'
 import AuthContext from '../contexts/AuthProvider'
 // import { useAuth0 } from "@auth0/auth0-react";
+import '../styles/loginPage.css'
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate()
   // const { loginWithRedirect, isAuthenticated, user } = useAuth0()

@@ -16,8 +16,8 @@ import { projectorFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createProjector } from '../api/projector.api'
 const ProjectorAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<projectorFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

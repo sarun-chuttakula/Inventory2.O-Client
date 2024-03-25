@@ -16,8 +16,8 @@ import { monitorFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createMonitor } from '../api/monitor.api'
 const MonitorAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<monitorFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

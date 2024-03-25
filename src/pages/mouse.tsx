@@ -16,8 +16,8 @@ import { mouseFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
 import { createMouse } from '../api/mouse.api'
 const MouseAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<mouseFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

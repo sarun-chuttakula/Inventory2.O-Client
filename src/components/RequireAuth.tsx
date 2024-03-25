@@ -8,14 +8,14 @@ interface RequireAuthProps {
 }
 
 const RequireAuth: FC<RequireAuthProps> = ({ allowedRoles }) => {
-  const auth = useAuth()
+  const { authData } = useAuth()
   const location = useLocation()
 
-  if (!auth) {
+  if (!authData) {
     return <Navigate to='/login' state={{ from: location }} replace />
   }
 
-  const { role } = auth
+  const { role } = authData
   if (
     (role && location.pathname === '/login') ||
     location.pathname === '/signup'

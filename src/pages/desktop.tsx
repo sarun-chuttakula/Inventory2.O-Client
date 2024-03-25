@@ -16,8 +16,8 @@ import { desktopFormData } from '../dtos'
 import { createDesktop } from '../api/desktop.api'
 import useAuth from '../hooks/useAuth'
 const DesktopAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<desktopFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,

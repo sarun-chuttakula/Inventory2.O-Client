@@ -14,11 +14,11 @@ import {
 import InputText from '../components/inputText/inputText'
 import { printerFormData } from '../dtos'
 import useAuth from '../hooks/useAuth'
-import { create } from 'domain'
+
 import { createPrinter } from '../api/printer.api'
 const PrinterAuditForm: React.FC = () => {
-  const auth = useAuth()
-  const token = auth?.accesstoken as string
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
   const [formData, setFormData] = useState<printerFormData>({
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
