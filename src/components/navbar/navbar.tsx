@@ -75,7 +75,7 @@ function MainNavbar() {
               </div>
             </li>
             <li className='nav-item'>
-              <a href='/fetch-assets' className='nav-link'>
+              <a href='/fetchassets' className='nav-link'>
                 Fetch
               </a>
             </li>

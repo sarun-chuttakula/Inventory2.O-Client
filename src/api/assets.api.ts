@@ -7,7 +7,7 @@ export const getAllAssets = async (
 ) => {
   try {
     const response = await fetch(
-      `${BASE_API_URL}/assets?page=${page}&assets_type=${assets_type}`,
+      `${BASE_API_URL}/assets?page=${page}&asset_type=${assets_type}`,
       {
         method: 'GET',
         headers: {

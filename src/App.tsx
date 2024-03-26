@@ -79,7 +79,7 @@ function App() {
             <Route path='/tab' element={<TabAudit />} />
             <Route path='/tv' element={<TvAudit />} />
             <Route path='/ups' element={<UpsAudit />} />
-            <Route path='fetch-assets' element={<FetchAssets />} />
+            <Route path='fetchassets' element={<FetchAssets />} />
           </Route>
         </Route>
         {/* we want to protect these routes */}
