@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllAssets } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
 import '../styles/fetchAssets.css'
+
 const FetchAssets = () => {
   const [assets, setAssets] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -15,11 +16,10 @@ const FetchAssets = () => {
     const fetchData = async () => {
       try {
         const page = '1'
-        const asset_type = 'desktop'
+        const asset_type = 'laptop'
         if (token) {
           const response = await getAllAssets(token, page, asset_type)
           const assetData = response.data
-          console.log(assetData, 'assetsData')
           setAssets(assetData)
           if (assetData.length > 0) {
             const headers = Object.keys(assetData[0])
@@ -46,9 +46,12 @@ const FetchAssets = () => {
     return <div>Error: {error.message}</div>
   }
 
+  if (assets.length === 0) {
+    return <div>No assets available.</div>
+  }
+
   return (
     <div>
-      {/* <h1>Fetch Assets Page</h1> */}
       <table className='assets-table'>
         <thead>
           <tr>
