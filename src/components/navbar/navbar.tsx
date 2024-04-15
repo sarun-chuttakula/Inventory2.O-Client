@@ -1,19 +1,24 @@
 import React from 'react'
 import '../../styles/navbar.css'
 import useAuth from '../../hooks/useAuth'
+import { Link, useLocation } from 'react-router-dom'
 
 function MainNavbar() {
   const { logout } = useAuth()
+  const location = useLocation()
+
   const handleLogout = () => {
     console.log('Logging out')
     logout()
   }
+  const path = location.pathname.split('/')[1]
+
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       <div className='container'>
-        <a href='/' className='navbar-brand'>
+        <Link to='/' className='navbar-brand'>
           XELP
-        </a>
+        </Link>
         <button
           className='navbar-toggler'
           type='button'
@@ -28,9 +33,9 @@ function MainNavbar() {
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav me-auto'>
             <li className='nav-item'>
-              <a href='/' className='nav-link'>
+              <Link to='/' className='nav-link'>
                 HOME
-              </a>
+              </Link>
             </li>
             <li className='nav-item dropdown'>
               <a
@@ -75,9 +80,15 @@ function MainNavbar() {
               </div>
             </li>
             <li className='nav-item'>
-              <a href='/fetchassets' className='nav-link'>
+              <Link
+                to={{
+                  pathname: '/fetchassets',
+                }}
+                state={{ asset_type: path }}
+                className='nav-link'
+              >
                 Fetch
-              </a>
+              </Link>
             </li>
             <li className='nav-item'>
               <button className='nav-link' onClick={handleLogout}>
