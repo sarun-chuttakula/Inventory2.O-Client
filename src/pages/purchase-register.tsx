@@ -110,12 +110,12 @@ function PurchaseRegister() {
 
         <div className='form-group'>
           <h2>
-            <label htmlFor='serialNumber'>Serial Number:</label>
+            <label htmlFor='serialnumber'>Serial Number:</label>
           </h2>
           <input
             type='text'
-            id='serialNumber'
-            name='serialNumber'
+            id='serialnumber'
+            name='serialnumber'
             className='form-control'
             required
           />

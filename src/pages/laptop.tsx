@@ -386,7 +386,7 @@ const LaptopAuditForm: React.FC = () => {
               />
               <InputText
                 label='Updated By'
-                name='updatedBy'
+                name='updatedbyname'
                 placeholder='Enter the Updated By'
                 value={formData.updatedbyname}
                 onChange={handleChange}

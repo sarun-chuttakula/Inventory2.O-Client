@@ -26,10 +26,10 @@ export interface ${file%.tsx}FormData {
   make: MakeOptions
   city: CityOptions
   model: string
-  tagID: string
-  hodTag: string
+  tagid: string
+  hodtag: string
   location: string
-  serialNumber: string
+  serialnumber: string
   lan: string
   wifi: string
   processor: ProcessorOptions
@@ -43,7 +43,7 @@ export interface ${file%.tsx}FormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedBy: string
+  updatedbyname: string
 }" > "$path/$file"
 done
 

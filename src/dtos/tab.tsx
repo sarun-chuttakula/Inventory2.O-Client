@@ -12,10 +12,10 @@ export interface tabFormData {
   make: MakeOptions
   city: CityOptions
   model: string
-  tagID: string
-  hodTag: string
+  tagid: string
+  hodtag: string
   location: string
-  serialNumber: string
+  serialnumber: string
   lan: string
   wifi: string
   processor: ProcessorOptions
@@ -29,5 +29,5 @@ export interface tabFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedBy: string
+  updatedbyname: string
 }
