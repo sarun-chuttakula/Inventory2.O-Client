@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllAssets } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
-import { updateDesktop } from '../api/desktop.api'
+import { updateDesktop, deleteDesktop } from '../api/desktop.api'
 import '../styles/fetchAssets.css'
 import { useLocation } from 'react-router-dom'
 
@@ -122,8 +122,20 @@ const FetchAssets = () => {
     }
   }
 
-  const handleDelete = (assetType: string, rowIndex: number) => {
+  const handleDelete = async (assetType: string, rowIndex: number) => {
     console.log(`Deleting asset ${assetType} at index ${rowIndex}`)
+    try {
+      const idToDelete = assetData[assetType][rowIndex].values[0].id
+      const response = await deleteDesktop(token, idToDelete)
+      console.log('Delete successful:', response)
+
+      // Update the assetData state after deletion
+      const updatedData = [...assetData[assetType]]
+      updatedData.splice(rowIndex, 1) // Remove the deleted item
+      setAssetData({ ...assetData, [assetType]: updatedData })
+    } catch (error) {
+      console.error('Delete failed:', error)
+    }
   }
 
   const handleKeyPress = (
