@@ -13,55 +13,51 @@ const FetchAssets = () => {
 
   const { authData } = useAuth()
   const token = authData?.accesstoken as string
-  const type = location.state?.asset_type || null
-
-  const app_assets = [
-    'desktop',
-    'laptop',
-    'printer',
-    'monitor',
-    'tab',
-    'tv',
-    'airpurifier',
-    'biometrix',
-    'projector',
-    'keyboard',
-    'mouse',
-    'router',
-    'ups',
-    'ac',
-  ]
+  const type = location.state?.asset_type || 'all'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const page = '1'
         if (token) {
-          const assetType = app_assets.includes(type) ? type : ''
-          console.log(type, 'a', assetType)
-          const response = await getAllAssets(token, page, assetType)
-          const assetData = response.data[0]
-          setAssets(assetData)
-          if (assetData.length > 0) {
-            const headers = Object.keys(assetData[0])
+          let response
+          if (type === 'all') {
+            // Fetch all assets in a single API call
+            response = await getAllAssets(token, page, 'all')
+          } else {
+            // Fetch assets for the specific type
+            response = await getAllAssets(token, page, type)
+          }
+
+          const filteredAssets = response.data.map((asset: any) => ({
+            assetType: asset.asset_type,
+            values: asset.values || [],
+          }))
+
+          const nonEmptyAssets = filteredAssets.filter(
+            (asset: any) => asset.values.length > 0,
+          )
+
+          if (nonEmptyAssets.length > 0) {
+            const headers = Object.keys(nonEmptyAssets[0].values[0] || {})
             setTableHeaders(headers)
-            setAssets(assetData)
+            setAssets(nonEmptyAssets)
           } else {
             setTableHeaders([])
             setAssets([])
           }
-          setLoading(false)
         } else {
           throw new Error('Access token not found')
         }
       } catch (error: any) {
         setError(error)
+      } finally {
         setLoading(false)
       }
     }
 
     fetchData()
-  }, [])
+  }, [token, type])
 
   if (loading) {
     return <div>Loading...</div>
@@ -87,11 +83,18 @@ const FetchAssets = () => {
         </thead>
         <tbody>
           {assets.map((asset, index) => (
-            <tr key={index}>
-              {tableHeaders.map((header) => (
-                <td key={header}>{asset[header]}</td>
+            <React.Fragment key={index}>
+              <tr>
+                <th colSpan={tableHeaders.length}>{asset.assetType}</th>
+              </tr>
+              {asset.values.map((assetData: any, idx: number) => (
+                <tr key={`${index}-${idx}`}>
+                  {tableHeaders.map((header) => (
+                    <td key={header}>{assetData[header]}</td>
+                  ))}
+                </tr>
               ))}
-            </tr>
+            </React.Fragment>
           ))}
         </tbody>
       </table>
