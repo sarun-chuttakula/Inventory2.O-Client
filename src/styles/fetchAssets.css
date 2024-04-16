@@ -1,15 +1,15 @@
 .assets-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .assets-table th, .assets-table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-  }
-  
-  .assets-table th {
-    background-color: #f2f2f2;
-    text-align: left;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assets-table th,
+.assets-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.assets-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
