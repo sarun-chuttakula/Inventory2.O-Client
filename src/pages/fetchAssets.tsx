@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllAssets } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
+import { updateDesktop } from '../api/desktop.api'
 import '../styles/fetchAssets.css'
 import { useLocation } from 'react-router-dom'
 
@@ -77,6 +78,64 @@ const FetchAssets = () => {
     fetchData()
   }, [token, assetType])
 
+  const [editCell, setEditCell] = useState<{
+    assetType: string | null
+    rowIndex: number | null
+    header: string | null
+  }>({
+    assetType: null,
+    rowIndex: null,
+    header: null,
+  })
+
+  const handleEditStart = (
+    assetType: string,
+    rowIndex: number,
+    header: string,
+  ) => {
+    setEditCell({ assetType, rowIndex, header })
+  }
+
+  const handleEditEnd = async (newValue: string) => {
+    if (
+      editCell.assetType !== null &&
+      editCell.rowIndex !== null &&
+      editCell.header !== null
+    ) {
+      const { assetType, rowIndex, header } = editCell
+      const updatedData = [...assetData[assetType]]
+      updatedData[rowIndex].values[0][header] = newValue
+      setAssetData({ ...assetData, [assetType]: updatedData })
+
+      try {
+        const response = await updateDesktop(
+          token,
+          assetData[assetType][rowIndex].values[0].id,
+          { [header]: newValue },
+        )
+        console.log('Update successful:', response)
+      } catch (error) {
+        console.error('Update failed:', error)
+      }
+
+      setEditCell({ assetType: null, rowIndex: null, header: null })
+    }
+  }
+
+  const handleDelete = (assetType: string, rowIndex: number) => {
+    console.log(`Deleting asset ${assetType} at index ${rowIndex}`)
+  }
+
+  const handleKeyPress = (
+    event: React.KeyboardEvent<HTMLTableDataCellElement>,
+  ) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      const newValue = event.currentTarget.innerText
+      handleEditEnd(newValue)
+    }
+  }
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -100,14 +159,37 @@ const FetchAssets = () => {
                 {assetData[assetType][0].headers.map((header: string) => (
                   <th key={header}>{header}</th>
                 ))}
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {assetData[assetType].map((asset: any, index: number) => (
                 <tr key={index}>
                   {asset.headers.map((header: string, idx: number) => (
-                    <td key={idx}>{asset.values[0][header]}</td>
+                    <td
+                      key={idx}
+                      onDoubleClick={() =>
+                        handleEditStart(assetType, index, header)
+                      }
+                      onBlur={(e) => handleEditEnd(e.target.innerText)}
+                      onKeyDown={handleKeyPress}
+                      contentEditable={
+                        editCell.assetType === assetType &&
+                        editCell.rowIndex === index &&
+                        editCell.header === header
+                      }
+                    >
+                      {asset.values[0][header]}
+                    </td>
                   ))}
+                  <td>
+                    <button
+                      className='action-button'
+                      onClick={() => handleDelete(assetType, index)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
