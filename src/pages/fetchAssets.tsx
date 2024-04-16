@@ -13,7 +13,24 @@ const FetchAssets = () => {
 
   const { authData } = useAuth()
   const token = authData?.accesstoken as string
+  const app_assets = [
+    'desktop',
+    'laptop',
+    'printer',
+    'monitor',
+    'tab',
+    'tv',
+    'airpurifier',
+    'biometrix',
+    'projector',
+    'keyboard',
+    'mouse',
+    'router',
+    'ups',
+    'ac',
+  ]
   const type = location.state?.asset_type || 'all'
+  const assetType = app_assets.includes(type) ? type : 'all'
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,12 +38,12 @@ const FetchAssets = () => {
         const page = '1'
         if (token) {
           let response
-          if (type === 'all') {
+          if (assetType === 'all') {
             // Fetch all assets in a single API call
             response = await getAllAssets(token, page, 'all')
           } else {
             // Fetch assets for the specific type
-            response = await getAllAssets(token, page, type)
+            response = await getAllAssets(token, page, assetType)
           }
 
           const filteredAssets = response.data.map((asset: any) => ({
