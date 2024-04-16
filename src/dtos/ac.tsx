@@ -12,16 +12,16 @@ export interface acFormData {
   make: MakeOptions
   city: CityOptions
   model: string
-  tagID: string
-  hodTag: string
+  tagid: string
+  hodtag: string
   location: string
-  serialNumber: string
-  lan: string
-  wifi: string
+  serialnumber: string
+  macid_lan: string
+  macid_wifi: string
   processor: ProcessorOptions
   generation: string
   os: OperatingSystem
-  osKey: string
+  oskey: string
   hostname: string
   ram: RAMOptions
   storage: StorageOptions
@@ -29,5 +29,5 @@ export interface acFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedBy: string
+  updatedbyname: string
 }

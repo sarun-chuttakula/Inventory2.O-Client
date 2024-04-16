@@ -6,11 +6,10 @@ import { useLocation } from 'react-router-dom'
 
 const FetchAssets = () => {
   const location = useLocation()
-  const [assets, setAssets] = useState<any[]>([])
+  const [assetTypes, setAssetTypes] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
-  const [tableHeaders, setTableHeaders] = useState<string[]>([])
-
+  const [assetData, setAssetData] = useState<{ [key: string]: any[] }>({})
   const { authData } = useAuth()
   const token = authData?.accesstoken as string
   const app_assets = [
@@ -37,14 +36,10 @@ const FetchAssets = () => {
       try {
         const page = '1'
         if (token) {
-          let response
-          if (assetType === 'all') {
-            // Fetch all assets in a single API call
-            response = await getAllAssets(token, page, 'all')
-          } else {
-            // Fetch assets for the specific type
-            response = await getAllAssets(token, page, assetType)
-          }
+          const response =
+            assetType === 'all'
+              ? await getAllAssets(token, page, 'all')
+              : await getAllAssets(token, page, assetType)
 
           const filteredAssets = response.data.map((asset: any) => ({
             assetType: asset.asset_type,
@@ -55,14 +50,20 @@ const FetchAssets = () => {
             (asset: any) => asset.values.length > 0,
           )
 
-          if (nonEmptyAssets.length > 0) {
-            const headers = Object.keys(nonEmptyAssets[0].values[0] || {})
-            setTableHeaders(headers)
-            setAssets(nonEmptyAssets)
-          } else {
-            setTableHeaders([])
-            setAssets([])
-          }
+          const groupedAssets: { [key: string]: any[] } = {}
+          nonEmptyAssets.forEach((asset: any) => {
+            const headers = Object.keys(asset.values[0] || {})
+            const assetKey = asset.assetType
+
+            if (!groupedAssets[assetKey]) {
+              groupedAssets[assetKey] = []
+            }
+
+            groupedAssets[assetKey].push({ headers, values: asset.values })
+          })
+
+          setAssetData(groupedAssets)
+          setAssetTypes(Object.keys(groupedAssets))
         } else {
           throw new Error('Access token not found')
         }
@@ -74,7 +75,7 @@ const FetchAssets = () => {
     }
 
     fetchData()
-  }, [token, type])
+  }, [token, assetType])
 
   if (loading) {
     return <div>Loading...</div>
@@ -84,37 +85,35 @@ const FetchAssets = () => {
     return <div>Error: {error.message}</div>
   }
 
-  if (assets.length === 0) {
+  if (assetTypes.length === 0) {
     return <div>No assets available.</div>
   }
 
   return (
     <div>
-      <table className='assets-table'>
-        <thead>
-          <tr>
-            {tableHeaders.map((header) => (
-              <th key={header}>{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {assets.map((asset, index) => (
-            <React.Fragment key={index}>
+      {assetTypes.map((assetType) => (
+        <div key={assetType}>
+          <h2>{assetType}</h2>
+          <table className='assets-table'>
+            <thead>
               <tr>
-                <th colSpan={tableHeaders.length}>{asset.assetType}</th>
+                {assetData[assetType][0].headers.map((header: string) => (
+                  <th key={header}>{header}</th>
+                ))}
               </tr>
-              {asset.values.map((assetData: any, idx: number) => (
-                <tr key={`${index}-${idx}`}>
-                  {tableHeaders.map((header) => (
-                    <td key={header}>{assetData[header]}</td>
+            </thead>
+            <tbody>
+              {assetData[assetType].map((asset: any, index: number) => (
+                <tr key={index}>
+                  {asset.headers.map((header: string, idx: number) => (
+                    <td key={idx}>{asset.values[0][header]}</td>
                   ))}
                 </tr>
               ))}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      ))}
     </div>
   )
 }

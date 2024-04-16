@@ -22,16 +22,16 @@ const AcAuditForm: React.FC = () => {
     make: MakeOptions.Assembled,
     city: CityOptions.Hyderabad,
     model: '',
-    tagID: '',
-    hodTag: '',
+    tagid: '',
+    hodtag: '',
     location: '',
-    serialNumber: '',
-    lan: '',
-    wifi: '',
+    serialnumber: '',
+    macid_lan: '',
+    macid_wifi: '',
     processor: ProcessorOptions.Corei3,
     generation: '',
     os: OperatingSystem.Windows,
-    osKey: '',
+    oskey: '',
     hostname: '',
     ram: RAMOptions.GB4,
     storage: StorageOptions.GB64,
@@ -39,7 +39,7 @@ const AcAuditForm: React.FC = () => {
     user: '',
     status: StatusOptions.Working,
     remarks: '',
-    updatedBy: '',
+    updatedbyname: '',
   })
 
   const handleChange = (
@@ -128,16 +128,16 @@ const AcAuditForm: React.FC = () => {
               />
               <InputText
                 label='Tag ID'
-                name='tagID'
+                name='tagid'
                 placeholder='Enter the Tag ID'
-                value={formData.tagID}
+                value={formData.tagid}
                 onChange={handleChange}
               />
               <InputText
                 label='HOD Tag'
-                name='hodTag'
+                name='hodtag'
                 placeholder='Enter the HOD Tag'
-                value={formData.hodTag}
+                value={formData.hodtag}
                 onChange={handleChange}
               />
               <InputText
@@ -149,9 +149,9 @@ const AcAuditForm: React.FC = () => {
               />
               <InputText
                 label='Serial Number'
-                name='serialNumber'
+                name='serialnumber'
                 placeholder='Enter the Serial Number'
-                value={formData.serialNumber}
+                value={formData.serialnumber}
                 onChange={handleChange}
               />
               <InputText
@@ -187,9 +187,9 @@ const AcAuditForm: React.FC = () => {
               />
               <InputText
                 label='Updated By'
-                name='updatedBy'
+                name='updatedbyname'
                 placeholder='Enter the Updated By'
-                value={formData.updatedBy}
+                value={formData.updatedbyname}
                 onChange={handleChange}
               />
               <tr>
