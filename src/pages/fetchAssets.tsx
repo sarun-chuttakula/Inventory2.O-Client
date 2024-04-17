@@ -163,7 +163,7 @@ const FetchAssets = () => {
   return (
     <div>
       {assetTypes.map((assetType) => (
-        <div key={assetType}>
+        <div key={assetType} className='assets-table-container'>
           <h2>{assetType}</h2>
           <table className='assets-table'>
             <thead>
@@ -201,7 +201,7 @@ const FetchAssets = () => {
                         to={{
                           pathname: '/edit',
                         }}
-                        state={{ assetType, rowData: [value] }}
+                        state={{ assetType, rowData: value }}
                       >
                         Edit
                       </Link>
