@@ -21,3 +21,24 @@ export const getAllAssets = async (
     return error
   }
 }
+
+export const updateAsset = async (
+  token: string,
+  id: string,
+  asset_type: string,
+  data: any,
+) => {
+  try {
+    const response = await fetch(`${BASE_API_URL}/${asset_type}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
+    return response.json()
+  } catch (error) {
+    return error
+  }
+}
