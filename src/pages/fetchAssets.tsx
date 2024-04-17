@@ -175,45 +175,46 @@ const FetchAssets = () => {
               </tr>
             </thead>
             <tbody>
-              {assetData[assetType].map((asset: any, index: number) => (
-                <tr key={index}>
-                  {asset.headers.map((header: string, idx: number) => (
-                    <td
-                      key={idx}
-                      onDoubleClick={() =>
-                        handleEditStart(assetType, index, header)
-                      }
-                      onBlur={(e) => handleEditEnd(e.target.innerText)}
-                      onKeyDown={handleKeyPress}
-                      contentEditable={
-                        editCell.assetType === assetType &&
-                        editCell.rowIndex === index &&
-                        editCell.header === header
-                      }
-                    >
-                      {asset.values[0][header]}
+              {assetData[assetType].map((asset: any, index: number) =>
+                asset.values.map((value: any, valueIndex: number) => (
+                  <tr key={`${index}-${valueIndex}`}>
+                    {asset.headers.map((header: string, idx: number) => (
+                      <td
+                        key={idx}
+                        onDoubleClick={() =>
+                          handleEditStart(assetType, index, header)
+                        }
+                        onBlur={(e) => handleEditEnd(e.target.innerText)}
+                        onKeyDown={handleKeyPress}
+                        contentEditable={
+                          editCell.assetType === assetType &&
+                          editCell.rowIndex === index &&
+                          editCell.header === header
+                        }
+                      >
+                        {value[header]}
+                      </td>
+                    ))}
+                    <td>
+                      <Link
+                        className='action-link'
+                        to={{
+                          pathname: '/edit',
+                        }}
+                        state={{ assetType, rowData: [value] }}
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        className='action-button'
+                        onClick={() => handleDelete(assetType, index)}
+                      >
+                        Delete
+                      </button>
                     </td>
-                  ))}
-                  <td>
-                    <Link
-                      className='action-link'
-                      to={{
-                        pathname: '/edit',
-                      }}
-                      state={{ assetType, rowData: asset.values[0] }}
-                    >
-                      Edit
-                    </Link>
-
-                    <button
-                      className='action-button'
-                      onClick={() => handleDelete(assetType, index)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                  </tr>
+                )),
+              )}
             </tbody>
           </table>
         </div>
