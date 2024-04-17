@@ -1,5 +1,7 @@
 import React, { useState, FormEvent } from 'react'
 import { useLocation } from 'react-router-dom'
+import { updateAsset } from '../api/assets.api'
+import useAuth from '../hooks/useAuth'
 
 const EditAssetPage: React.FC = () => {
   const location = useLocation()
@@ -7,6 +9,8 @@ const EditAssetPage: React.FC = () => {
   const [editedData, setEditedData] = useState<{ [key: string]: string }>(
     rowData,
   )
+  const { authData } = useAuth()
+  const token = authData?.accesstoken as string
 
   const handleInputChange = (key: string, value: string) => {
     setEditedData({
@@ -15,9 +19,22 @@ const EditAssetPage: React.FC = () => {
     })
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('Updated Data:', editedData)
+
+    try {
+      const response = await updateAsset(
+        token,
+        rowData.id,
+        assetType,
+        editedData,
+      )
+      setEditedData(response.data)
+      console.log('Update response:', response)
+    } catch (error) {
+      console.error('Update failed:', error)
+    }
   }
 
   return (
