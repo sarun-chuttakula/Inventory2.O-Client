@@ -3,7 +3,7 @@ import { getAllAssets } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
 import { updateDesktop, deleteDesktop } from '../api/desktop.api'
 import '../styles/fetchAssets.css'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const FetchAssets = () => {
   const location = useLocation()
@@ -195,6 +195,16 @@ const FetchAssets = () => {
                     </td>
                   ))}
                   <td>
+                    <Link
+                      className='action-link'
+                      to={{
+                        pathname: '/edit',
+                      }}
+                      state={{ assetType, rowData: asset.values[0] }}
+                    >
+                      Edit
+                    </Link>
+
                     <button
                       className='action-button'
                       onClick={() => handleDelete(assetType, index)}

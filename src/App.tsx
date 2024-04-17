@@ -30,6 +30,7 @@ import Main from './pages/main'
 import PurchaseDashboard from './pages/PurchaseDashboard'
 import PurchaseRegister from './pages/purchase-register'
 import FetchAssets from './pages/fetchAssets'
+import EditAssetPage from './pages/editAsset'
 function App() {
   const { authData } = useAuth()
   return (
@@ -80,6 +81,7 @@ function App() {
             <Route path='/tv' element={<TvAudit />} />
             <Route path='/ups' element={<UpsAudit />} />
             <Route path='fetchassets' element={<FetchAssets />} />
+            <Route path='/edit' element={<EditAssetPage />} />
           </Route>
         </Route>
         {/* we want to protect these routes */}
