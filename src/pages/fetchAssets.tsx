@@ -92,6 +92,10 @@ const FetchAssets = () => {
 
   const handleDelete = async (assetType: string, rowIndex: number) => {
     console.log(`Deleting asset ${assetType} at index ${rowIndex}`)
+    const shouldDelete = confirm('Are you sure you want to delete this asset?')
+    if (!shouldDelete) {
+      return
+    }
     try {
       const idToDelete = assetData[assetType][rowIndex].values[0].id
       const response = await deleteDesktop(token, idToDelete)
