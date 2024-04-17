@@ -1,9 +1,8 @@
 // FetchAssets.js
 
 import React, { useState, useEffect } from 'react'
-import { getAllAssets } from '../api/assets.api'
+import { deleteAsset, getAllAssets } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
-import { deleteDesktop } from '../api/desktop.api'
 import '../styles/fetchAssets.css'
 import { Link } from 'react-router-dom'
 import { FaTrash, FaEdit } from 'react-icons/fa'
@@ -98,7 +97,7 @@ const FetchAssets = () => {
     }
     try {
       const idToDelete = assetData[assetType][rowIndex].values[0].id
-      const response = await deleteDesktop(token, idToDelete)
+      const response = await deleteAsset(token, idToDelete, assetType)
       console.log('Delete successful:', response)
 
       const updatedData = [...assetData[assetType]]

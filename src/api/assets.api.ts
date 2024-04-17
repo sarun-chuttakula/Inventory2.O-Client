@@ -42,3 +42,22 @@ export const updateAsset = async (
     return error
   }
 }
+
+export const deleteAsset = async (
+  token: string,
+  id: string,
+  asset_type: string,
+) => {
+  try {
+    const response = await fetch(`${BASE_API_URL}/${asset_type}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.json()
+  } catch (error) {
+    return error
+  }
+}
