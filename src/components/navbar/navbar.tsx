@@ -1,9 +1,9 @@
 import React from 'react'
-import '../../styles/navbar.css'
+import '../../styles/navbar.css' // Update to your sidebar CSS file path
 import useAuth from '../../hooks/useAuth'
 import { Link, useLocation } from 'react-router-dom'
 
-function MainNavbar() {
+function MainSidebar() {
   const { logout } = useAuth()
   const location = useLocation()
 
@@ -11,95 +11,82 @@ function MainNavbar() {
     console.log('Logging out')
     logout()
   }
+
   const path = location.pathname.split('/')[1]
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-      <div className='container'>
-        <Link to='/' className='navbar-brand'>
+    <div className='sidebar'>
+      <div className='sidebar-header'>
+        <Link to='/' className='sidebar-brand'>
           XELP
         </Link>
-        <button
-          className='navbar-toggler'
-          type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarNav'
-          aria-controls='navbarNav'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon'></span>
-        </button>
-        <div className='collapse navbar-collapse' id='navbarNav'>
-          <ul className='navbar-nav me-auto'>
-            <li className='nav-item'>
-              <Link to='/' className='nav-link'>
-                HOME
-              </Link>
-            </li>
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/items'
-                id='navbarDropdownMenuLink'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-haspopup='true'
-                aria-expanded='false'
-              >
-                ITEMS
-              </a>
-              <div
-                className='dropdown-menu'
-                aria-labelledby='navbarDropdownMenuLink'
-              >
-                <a className='dropdown-item' href='/laptop'>
-                  Laptop
-                </a>
-                <a className='dropdown-item' href='/desktop'>
-                  Desktop
-                </a>
-                <a className='dropdown-item' href='/monitor'>
-                  Monitor
-                </a>
-                <a className='dropdown-item' href='/keyboard'>
-                  Keyboard
-                </a>
-                <a className='dropdown-item' href='/mouse'>
-                  Mouse
-                </a>
-                <a className='dropdown-item' href='/tab'>
-                  Tab/iPad/Mobile
-                </a>
-                <a className='dropdown-item' href='/printer'>
-                  Printer
-                </a>
-                <a className='dropdown-item' href='/router'>
-                  Router
-                </a>
-              </div>
-            </li>
-            <li className='nav-item'>
-              <Link
-                to={{
-                  pathname: '/fetchassets',
-                }}
-                state={{ asset_type: path }}
-                className='nav-link'
-              >
-                Fetch
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <button className='nav-link' onClick={handleLogout}>
-                Logout
-              </button>
-            </li>
-          </ul>
-        </div>
       </div>
-    </nav>
+      <ul className='sidebar-nav'>
+        <li className={path === '' ? 'active' : ''}>
+          <Link to='/' className='sidebar-link'>
+            HOME
+          </Link>
+        </li>
+        <li className='sidebar-dropdown'>
+          <a href='/items' className='sidebar-link'>
+            ITEMS
+          </a>
+          <div className='sidebar-submenu'>
+            <Link to='/laptop' className='sidebar-submenu-item'>
+              Laptop
+            </Link>
+            <Link to='/desktop' className='sidebar-submenu-item'>
+              Desktop
+            </Link>
+            <Link to='/monitor' className='sidebar-submenu-item'>
+              Monitor
+            </Link>
+            <Link to='/keyboard' className='sidebar-submenu-item'>
+              Keyboard
+            </Link>
+            <Link to='/mouse' className='sidebar-submenu-item'>
+              Mouse
+            </Link>
+            <Link to='/tab' className='sidebar-submenu-item'>
+              Tab/iPad/Mobile
+            </Link>
+            <Link to='/printer' className='sidebar-submenu-item'>
+              Printer
+            </Link>
+            <Link to='/router' className='sidebar-submenu-item'>
+              Router
+            </Link>
+          </div>
+        </li>
+        <li>
+          <Link
+            to={{
+              pathname: '/fetchassets',
+            }}
+            state={{ asset_type: path }}
+            className='sidebar-link'
+          >
+            Fetch
+          </Link>
+        </li>
+        <li>
+          <Link to='/purchase-dashboard' className='sidebar-link'>
+            PO Dashboard
+          </Link>
+        </li>
+        <li>
+          <Link to='/it-dashboard' className='sidebar-link'>
+            IT Dashboard
+          </Link>
+        </li>
+        <li>
+          {/* <button className='sidebar-link' onClick={handleLogout}>
+            Logout
+          </button> */}
+        </li>
+      </ul>
+    </div>
   )
 }
 
-export default MainNavbar
+export default MainSidebar
