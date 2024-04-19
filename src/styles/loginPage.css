@@ -76,7 +76,7 @@ input[type=checkbox] {
 }
 
 
-button {
+.login-btn {
     background-color: 	#1E90FF;
     color: white;
     margin: 18px 0;

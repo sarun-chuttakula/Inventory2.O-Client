@@ -61,7 +61,7 @@ const LoginScreen: React.FC = () => {
           <div>
             <br />
             <p>Don&apos;t have an account?</p>
-            <button>
+            <button className='login-btn'>
               <Link className='sign-up-link' to='/register'>
                 Sign Up
               </Link>
@@ -109,7 +109,11 @@ const LoginScreen: React.FC = () => {
             {/* <input type="checkbox"/> Remember me */}
             &nbsp;&nbsp;<a href='/forgotPassword'>Forgot password</a>
             <br />
-            <button type='submit' style={{ textAlign: 'center' }}>
+            <button
+              className='login-btn'
+              type='submit'
+              style={{ textAlign: 'center' }}
+            >
               Login
             </button>
             <br />
