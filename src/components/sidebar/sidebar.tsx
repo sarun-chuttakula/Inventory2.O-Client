@@ -1,16 +1,15 @@
 import React from 'react'
-import '../../styles/navbar.css' // Update to your sidebar CSS file path
-import useAuth from '../../hooks/useAuth'
+// import useAuth from '../../hooks/useAuth'
 import { Link, useLocation } from 'react-router-dom'
 
 function MainSidebar() {
-  const { logout } = useAuth()
+  // const { logout } = useAuth()
   const location = useLocation()
 
-  const handleLogout = () => {
-    console.log('Logging out')
-    logout()
-  }
+  // const handleLogout = () => {
+  //   console.log('Logging out')
+  //   logout()
+  // }
 
   const path = location.pathname.split('/')[1]
 
@@ -27,7 +26,7 @@ function MainSidebar() {
             HOME
           </Link>
         </li>
-        <li className='sidebar-dropdown'>
+        {/* <li className='sidebar-dropdown'>
           <a href='/items' className='sidebar-link'>
             ITEMS
           </a>
@@ -57,7 +56,7 @@ function MainSidebar() {
               Router
             </Link>
           </div>
-        </li>
+        </li> */}
         <li>
           <Link
             to={{

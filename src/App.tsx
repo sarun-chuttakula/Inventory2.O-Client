@@ -14,7 +14,7 @@ import PrinterAudit from './pages/printer'
 import ProjectorAudit from './pages/projector'
 import RouterAudit from './pages/router'
 import UpsAudit from './pages/ups'
-// import './App.css'
+import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from './pages/ITdashboard'
 import { Role } from './enums'
@@ -25,67 +25,81 @@ import LoginScreen from './pages/Login'
 import SignupScreen from './pages/Signup'
 import Unauthorized from './components/Unauthorized'
 import Missing from './components/Missing'
-import MainNavbar from './components/navbar/navbar'
+import MainNavbar from './components/sidebar/sidebar'
 import Main from './pages/main'
 import PurchaseDashboard from './pages/PurchaseDashboard'
 import PurchaseRegister from './pages/purchase-register'
 import FetchAssets from './pages/fetchAssets'
 import EditAssetPage from './pages/editAsset'
+import ProfileDropdown from './components/profileButton/profileButton'
 function App() {
   const { authData } = useAuth()
   return (
-    <div className='App'>
-      {authData && <MainNavbar />}
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          {/* public routes */}
-          <Route
-            path='/login'
-            element={authData ? <Navigate to='/' /> : <LoginScreen />}
-          />
-          <Route
-            path='*'
-            element={!authData ? <Navigate to='/login' /> : <Missing />}
-          />
-          {/* <Route path="/auth0-callback" element={<Auth0Callback />} /> */}
-          <Route path='/signup' element={<SignupScreen />} />
-          <Route path='/unauthorized' element={<Unauthorized />} />
-          <Route
-            element={
-              <RequireAuth
-                allowedRoles={[
-                  Role.admin,
-                  Role.editor,
-                  Role.user,
-                  Role.superadmin,
-                ]}
+    <div className='app-container'>
+      <div className='app-sidebar'>{authData && <MainNavbar />}</div>
+      <div className='app-content'>
+        <div className='app-header'>
+          <ProfileDropdown />
+        </div>
+        <div className='content'>
+          <Routes>
+            <Route path='/' element={<Layout />}>
+              {/* public routes */}
+              <Route
+                path='/login'
+                element={authData ? <Navigate to='/' /> : <LoginScreen />}
               />
-            }
-          >
-            <Route path='/' element={<Main />} />
-            <Route path='/purchase-dashboard' element={<PurchaseDashboard />} />
-            <Route path='/PurchaseRegister' element={<PurchaseRegister />} />
-            <Route path='/it-dashboard' element={<Dashboard />} />
-            <Route path='/ac' element={<AcAudit />} />
-            <Route path='/airpurifier' element={<AirpurifierAudit />} />
-            <Route path='/biometrix' element={<BiometrixAudit />} />
-            <Route path='/desktop' element={<DesktopAudit />} />
-            <Route path='/keyboard' element={<KeyboardAudit />} />
-            <Route path='/laptop' element={<LaptopAudit />} />
-            <Route path='/monitor' element={<MonitorAudit />} />
-            <Route path='/mouse' element={<MouseAudit />} />
-            <Route path='/printer' element={<PrinterAudit />} />
-            <Route path='/projector' element={<ProjectorAudit />} />
-            <Route path='/router' element={<RouterAudit />} />
-            <Route path='/tab' element={<TabAudit />} />
-            <Route path='/tv' element={<TvAudit />} />
-            <Route path='/ups' element={<UpsAudit />} />
-            <Route path='fetchassets' element={<FetchAssets />} />
-            <Route path='/edit' element={<EditAssetPage />} />
-          </Route>
-        </Route>
-        {/* we want to protect these routes */}
-      </Routes>
+              <Route
+                path='*'
+                element={!authData ? <Navigate to='/login' /> : <Missing />}
+              />
+              {/* <Route path="/auth0-callback" element={<Auth0Callback />} /> */}
+              <Route path='/signup' element={<SignupScreen />} />
+              <Route path='/unauthorized' element={<Unauthorized />} />
+              <Route
+                element={
+                  <RequireAuth
+                    allowedRoles={[
+                      Role.admin,
+                      Role.editor,
+                      Role.user,
+                      Role.superadmin,
+                    ]}
+                  />
+                }
+              >
+                <Route path='/' element={<Main />} />
+                <Route
+                  path='/purchase-dashboard'
+                  element={<PurchaseDashboard />}
+                />
+                <Route
+                  path='/PurchaseRegister'
+                  element={<PurchaseRegister />}
+                />
+                <Route path='/it-dashboard' element={<Dashboard />} />
+                <Route path='/ac' element={<AcAudit />} />
+                <Route path='/airpurifier' element={<AirpurifierAudit />} />
+                <Route path='/biometrix' element={<BiometrixAudit />} />
+                <Route path='/desktop' element={<DesktopAudit />} />
+                <Route path='/keyboard' element={<KeyboardAudit />} />
+                <Route path='/laptop' element={<LaptopAudit />} />
+                <Route path='/monitor' element={<MonitorAudit />} />
+                <Route path='/mouse' element={<MouseAudit />} />
+                <Route path='/printer' element={<PrinterAudit />} />
+                <Route path='/projector' element={<ProjectorAudit />} />
+                <Route path='/router' element={<RouterAudit />} />
+                <Route path='/tab' element={<TabAudit />} />
+                <Route path='/tv' element={<TvAudit />} />
+                <Route path='/ups' element={<UpsAudit />} />
+                <Route path='fetchassets' element={<FetchAssets />} />
+                <Route path='/edit' element={<EditAssetPage />} />
+              </Route>
+            </Route>
+            {/* we want to protect these routes */}
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }

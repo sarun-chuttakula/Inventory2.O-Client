@@ -1,33 +1,33 @@
-.sidebar {
+/* .sidebar {
   width: 250px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #343a40; /* Dark background color */
-  padding-top: 60px; /* Space for the header */
-  color: white;
-}
 
+  padding-top: 60px;
+  color: white;
+} */
+/* 
 .sidebar-header {
   text-align: center;
   padding-bottom: 10px;
-}
+} */
 
-.sidebar-brand {
+/* .sidebar-brand {
   font-size: 1.5em;
   font-weight: bold;
   color: white;
   text-decoration: none;
-}
+} */
 
-.sidebar-nav {
+/* .sidebar-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   list-style-type: none;
   padding-left: 0;
-}
+} */
 
 .sidebar-link {
   display: block;
