@@ -35,15 +35,21 @@ import ProfileDropdown from './components/profileButton/profileButton'
 function App() {
   const { authData } = useAuth()
   return (
-    <div className='app-container'>
-      <div className='app-sidebar'>{authData && <MainNavbar />}</div>
-      <div className='app-content'>
-        <div className='app-header'>
-          <div className='profile'>
-            <ProfileDropdown />
-          </div>
+    <div className={authData ? 'app-container' : 'APP'}>
+      {authData && (
+        <div className='app-sidebar'>
+          <MainNavbar />
         </div>
-        <div className='content'>
+      )}
+      <div className={authData ? 'app-content' : ''}>
+        {authData && (
+          <div className={authData ? 'app-header' : ''}>
+            <div className='profile'>
+              <ProfileDropdown />
+            </div>
+          </div>
+        )}
+        <div className={authData ? 'content' : ''}>
           <Routes>
             <Route path='/' element={<Layout />}>
               {/* public routes */}
