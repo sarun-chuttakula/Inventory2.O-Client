@@ -39,7 +39,9 @@ function App() {
       <div className='app-sidebar'>{authData && <MainNavbar />}</div>
       <div className='app-content'>
         <div className='app-header'>
-          <ProfileDropdown />
+          <div className='profile'>
+            <ProfileDropdown />
+          </div>
         </div>
         <div className='content'>
           <Routes>
