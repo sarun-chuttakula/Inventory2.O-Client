@@ -7,6 +7,8 @@ import { ApiResponse } from '../dtos/response.dto'
 import AuthContext from '../contexts/AuthProvider'
 // import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/loginPage.css'
+import { Link } from 'react-router-dom'
+
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate()
   // const { loginWithRedirect, isAuthenticated, user } = useAuth0()
@@ -49,42 +51,71 @@ const LoginScreen: React.FC = () => {
   console.log('User Data:', userData)
 
   return (
-    <div className='Login-container'>
-      <form className='Login-form' onSubmit={handleSubmit}>
-        <h1>Login Up Page</h1>
-
-        <div className='form-group'>
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            id='username'
-            placeholder='Enter your username'
-            value={formData.username}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            placeholder='Enter your password'
-            value={formData.password}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <button type='submit' className='btn btn-primary'>
-            Login Up
-          </button>
-          {/* <button onClick={handleLogin}>Login with Auth0</button> */}
-          <p>
-            Dont have an account? <a href='/signup'>Sign Up</a>
-          </p>
+    <div className='main-container'>
+      <div className='logincontainer'>
+        <div className='content-container'>
+          <div>
+            <h3>Welcome Back!</h3>
+            {/* <p>We are so happy to have you here. <br/>It's great to see you again.</p> */}
+          </div>
+          <div>
+            <br />
+            <p>Don&apos;t have an account?</p>
+            <button>
+              <Link className='sign-up-link' to='/register'>
+                Sign Up
+              </Link>
+            </button>
+          </div>
         </div>
-      </form>
+        <div className='login-container'>
+          <form onSubmit={handleSubmit}>
+            <h3>Login</h3>
+            <input
+              type='text'
+              placeholder='Username'
+              name='username'
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+            <br />
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <br />
+            {/* <div className="password-container">
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="password-input"
+                            />
+                            <span className="toggle-password" onClick={handleToggle}>
+                                <Icon icon={icon} size={15} />
+                            </span>
+                        </div> */}
+            {/* <label className="remember-me">
+                            <input type="checkbox"/>
+                            Remember me
+                        </label> */}
+            {/* <input type="checkbox"/> Remember me */}
+            &nbsp;&nbsp;<a href='/forgotPassword'>Forgot password</a>
+            <br />
+            <button type='submit' style={{ textAlign: 'center' }}>
+              Login
+            </button>
+            <br />
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

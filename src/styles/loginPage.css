@@ -1,66 +1,124 @@
-.Login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
 }
 
-.Login-form {
-  width: 400px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.main-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
 }
 
-.Login-form h1 {
-  margin-bottom: 20px;
-  text-align: center;
+.logincontainer{
+    width: 740px;
+    height: 500px;
+    border-radius: 30px;
+    background-color: 	#F4F4F4;
+    text-align: center;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
 }
 
-.form-group {
-  margin-bottom: 20px;
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+.login-container{
+    border: 2px solid #696969;
+    width: 300px;
+    height: 360px;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.form-control {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+form{
+    text-align: center;
 }
 
-.btn-primary {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+input[type=text], input[type=password], input[type=email] {
+    width: 250px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+    color: 	black;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+input[type=password] {
+    padding-right: 30px; 
+} 
+
+input[type=checkbox] {
+    text-align: right;
+    margin-right: 4px;
 }
 
-p {
-  text-align: center;
+.remember-me {
+    font-size: 14px; /* Adjust the font size as needed */
 }
 
-p a {
-  color: #007bff;
-  text-decoration: none;
+
+button {
+    background-color: 	#1E90FF;
+    color: white;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    text-align: center;
 }
 
-p a:hover {
-  text-decoration: underline;
+.a1{
+    text-decoration: none;
+    color: white;
 }
+
+.login-container .a1 {
+    text-decoration: underline;
+    color: #1E90FF;
+    font-size: 14px;
+} 
+  
+::placeholder {
+    color: 	#696969;
+}
+
+.password-container {
+    position: relative;
+  }
+  
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+  }
+
+.sign-up-link {
+    text-decoration: none;
+    color: white;
+}
+
