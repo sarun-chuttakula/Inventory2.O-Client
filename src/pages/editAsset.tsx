@@ -52,22 +52,25 @@ const EditAssetPage: React.FC = () => {
   ]
 
   return (
-    <div>
-      <h1>Edit Asset</h1>
-      <p>Asset Type: {assetType}</p>
+    <div className='editasset-container'>
+      <h1 className='main-heading'>Edit Asset</h1>
+      <p className='side-heading'>Asset Type: {assetType}</p>
       <form onSubmit={handleSubmit}>
         {Object.entries(editedData)
           // Filter out unwanted headers
           .filter(([key]) => !unwantedHeaders.includes(key))
           .map(([key, value]) => (
-            <div key={key}>
-              <label htmlFor={key}>{key}:</label>
+            <div className='edit-field' key={key}>
+              <label htmlFor={key} className='edit-label'>
+                {key}:
+              </label>
               {/* Render a dropdown for the "make" field */}
               {key === 'make' ? (
                 <select
                   id={key}
                   value={value}
                   onChange={(e) => handleInputChange(key, e.target.value)}
+                  className='edit-input'
                 >
                   {makeOptions.map((option) => (
                     <option key={option} value={option}>
@@ -82,6 +85,7 @@ const EditAssetPage: React.FC = () => {
                   id={key}
                   value={value}
                   onChange={(e) => handleInputChange(key, e.target.value)}
+                  className='edit-input'
                 />
               )}
             </div>

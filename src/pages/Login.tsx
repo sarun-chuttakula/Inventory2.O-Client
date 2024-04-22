@@ -69,9 +69,10 @@ const LoginScreen: React.FC = () => {
           </div>
         </div>
         <div className='login-container'>
-          <form onSubmit={handleSubmit}>
+          <form className='login-form' onSubmit={handleSubmit}>
             <h3>Login</h3>
             <input
+              className='textField'
               type='text'
               placeholder='Username'
               name='username'
@@ -81,6 +82,7 @@ const LoginScreen: React.FC = () => {
             />
             <br />
             <input
+              className='passwordField'
               type='password'
               placeholder='Password'
               name='password'
