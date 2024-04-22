@@ -41,38 +41,51 @@ const EditAssetPage: React.FC = () => {
   // Dropdown options for "make" field
   const makeOptions = ['dell', 'hp', 'assembled', 'lenovo', 'others']
 
+  // Define the unwanted headers to be removed
+  const unwantedHeaders = [
+    'id',
+    'created_at',
+    'updated_at',
+    'created_by',
+    'updated_by',
+    'is_active',
+  ]
+
   return (
     <div>
       <h1>Edit Asset</h1>
       <p>Asset Type: {assetType}</p>
       <form onSubmit={handleSubmit}>
-        {Object.entries(editedData).map(([key, value]) => (
-          <div key={key}>
-            <label htmlFor={key}>{key}:</label>
-            {/* Render a dropdown for the "make" field */}
-            {key === 'make' ? (
-              <select
-                id={key}
-                value={value}
-                onChange={(e) => handleInputChange(key, e.target.value)}
-              >
-                {makeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              // Render an input field for other fields
-              <input
-                type='text'
-                id={key}
-                value={value}
-                onChange={(e) => handleInputChange(key, e.target.value)}
-              />
-            )}
-          </div>
-        ))}
+        {Object.entries(editedData)
+          // Filter out unwanted headers
+          .filter(([key]) => !unwantedHeaders.includes(key))
+          .map(([key, value]) => (
+            <div key={key}>
+              <label htmlFor={key}>{key}:</label>
+              {/* Render a dropdown for the "make" field */}
+              {key === 'make' ? (
+                <select
+                  id={key}
+                  value={value}
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                >
+                  {makeOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                // Render an input field for other fields
+                <input
+                  type='text'
+                  id={key}
+                  value={value}
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                />
+              )}
+            </div>
+          ))}
         <button type='submit'>Save Changes</button>
       </form>
     </div>
