@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { updateAsset } from '../api/assets.api'
 import useAuth from '../hooks/useAuth'
+import '../styles/editAsset.css'
 
 const EditAssetPage: React.FC = () => {
   const location = useLocation()
@@ -37,6 +38,9 @@ const EditAssetPage: React.FC = () => {
     }
   }
 
+  // Dropdown options for "make" field
+  const makeOptions = ['dell', 'hp', 'assembled', 'lenovo', 'others']
+
   return (
     <div>
       <h1>Edit Asset</h1>
@@ -45,12 +49,28 @@ const EditAssetPage: React.FC = () => {
         {Object.entries(editedData).map(([key, value]) => (
           <div key={key}>
             <label htmlFor={key}>{key}:</label>
-            <input
-              type='text'
-              id={key}
-              value={value}
-              onChange={(e) => handleInputChange(key, e.target.value)}
-            />
+            {/* Render a dropdown for the "make" field */}
+            {key === 'make' ? (
+              <select
+                id={key}
+                value={value}
+                onChange={(e) => handleInputChange(key, e.target.value)}
+              >
+                {makeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              // Render an input field for other fields
+              <input
+                type='text'
+                id={key}
+                value={value}
+                onChange={(e) => handleInputChange(key, e.target.value)}
+              />
+            )}
           </div>
         ))}
         <button type='submit'>Save Changes</button>

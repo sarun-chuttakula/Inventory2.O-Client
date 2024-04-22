@@ -174,9 +174,20 @@ const FetchAssets = () => {
           <table className='assets-table'>
             <thead>
               <tr>
-                {assetData[assetType][0].headers.map((header: string) => (
-                  <th key={header}>{header}</th>
-                ))}
+                {assetData[assetType][0].headers
+                  .filter(
+                    (header: string) =>
+                      ![
+                        'id',
+                        'created_at',
+                        'updated_at',
+                        'created_by',
+                        'updated_by',
+                      ].includes(header),
+                  )
+                  .map((header: string) => (
+                    <th key={header}>{header}</th>
+                  ))}
                 <th>Actions</th>
               </tr>
             </thead>

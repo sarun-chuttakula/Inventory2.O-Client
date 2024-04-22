@@ -24,64 +24,59 @@ const SignupScreen: React.FC = () => {
     else navigate('/login')
   }
   return (
-    <div className='Signup-container'>
-      <form className='Signup-form' onSubmit={handleSubmit}>
-        <h1>Sign Up Page</h1>
-
-        <div className='form-group'>
-          <label htmlFor='firstname'>First Name</label>
-          <input
-            type='text'
-            name='firstname'
-            id='firstname'
-            placeholder='Enter your first name'
-            value={formData.firstname}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <label htmlFor='email'>Email</label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            placeholder='Enter your email'
-            value={formData.email}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            id='username'
-            placeholder='Enter your username'
-            value={formData.username}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            placeholder='Enter your password'
-            value={formData.password}
-            className='form-control'
-            onChange={handleChange}
-          />
-
-          <button type='submit' className='btn btn-primary'>
-            Sign Up
-          </button>
-
-          <p>
-            Already have an account? <a href='/login'>Login</a>
-          </p>
+    <div className='main-container'>
+      <div className='container'>
+        <div className='login-container'>
+          <form onSubmit={handleSubmit}>
+            <h3>Sign Up</h3>
+            <input
+              type='text'
+              placeholder='firstName'
+              value={formData.firstname}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type='email'
+              placeholder='Email'
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type='text'
+              placeholder='Username'
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type='password'
+              placeholder='Password'
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <button type='submit' style={{ textAlign: 'center' }}>
+              Sign Up
+            </button>
+            <br />
+          </form>
         </div>
-      </form>
+        <div className='content-container'>
+          <div>
+            <h3>Welcome!</h3>
+            <p>Please fill the details to signup.</p>
+          </div>
+          <div>
+            <p>Already have an account?</p>
+            <button type='submit' style={{ textAlign: 'center' }}>
+              <a href='/login'>Login</a>
+            </button>
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

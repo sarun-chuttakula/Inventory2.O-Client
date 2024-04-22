@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
+import { Icon } from 'react-icons-kit'
+import { person } from 'react-icons-kit/iconic/person'
 
 const ProfileDropdown: React.FC = () => {
   const { logout } = useAuth()
@@ -10,23 +12,7 @@ const ProfileDropdown: React.FC = () => {
     logout()
   }
 
-  return (
-    <div className='profile'>
-      {/* Profile Icon */}
-      <button className='profile-icon' onClick={() => setIsOpen(!isOpen)}>
-        <img src='path_to_profile_image' alt='Profile' />
-      </button>
-
-      {isOpen && (
-        <div className='dropdown-menu'>
-          <button onClick={() => console.log('Edit Profile')}>
-            Edit Profile
-          </button>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
-    </div>
-  )
+  return <div>Hi</div>
 }
 
 export default ProfileDropdown

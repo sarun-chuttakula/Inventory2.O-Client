@@ -62,7 +62,7 @@ const LoginScreen: React.FC = () => {
             <br />
             <p>Don&apos;t have an account?</p>
             <button className='login-btn'>
-              <Link className='sign-up-link' to='/register'>
+              <Link className='sign-up-link' to='/signup'>
                 Sign Up
               </Link>
             </button>
