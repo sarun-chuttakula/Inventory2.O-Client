@@ -221,7 +221,7 @@ const FetchAssets = () => {
                     <Link
                       className='action-link'
                       to={{
-                        pathname: '/edit',
+                        pathname: '/it-dashboard/edit',
                       }}
                       state={{ assetType, rowData: asset.values[0] }}
                     >

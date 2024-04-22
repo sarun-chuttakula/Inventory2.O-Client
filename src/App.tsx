@@ -82,26 +82,50 @@ function App() {
                   element={<PurchaseDashboard />}
                 />
                 <Route
-                  path='/PurchaseRegister'
+                  path='/purchase-dashboard/PurchaseRegister'
                   element={<PurchaseRegister />}
                 />
                 <Route path='/it-dashboard' element={<Dashboard />} />
-                <Route path='/ac' element={<AcAudit />} />
-                <Route path='/airpurifier' element={<AirpurifierAudit />} />
-                <Route path='/biometrix' element={<BiometrixAudit />} />
-                <Route path='/desktop' element={<DesktopAudit />} />
-                <Route path='/keyboard' element={<KeyboardAudit />} />
-                <Route path='/laptop' element={<LaptopAudit />} />
-                <Route path='/monitor' element={<MonitorAudit />} />
-                <Route path='/mouse' element={<MouseAudit />} />
-                <Route path='/printer' element={<PrinterAudit />} />
-                <Route path='/projector' element={<ProjectorAudit />} />
-                <Route path='/router' element={<RouterAudit />} />
-                <Route path='/tab' element={<TabAudit />} />
-                <Route path='/tv' element={<TvAudit />} />
-                <Route path='/ups' element={<UpsAudit />} />
-                <Route path='fetchassets' element={<FetchAssets />} />
-                <Route path='/edit' element={<EditAssetPage />} />
+                <Route path='/it-dashboard/ac' element={<AcAudit />} />
+                <Route
+                  path='/it-dashboard/airpurifier'
+                  element={<AirpurifierAudit />}
+                />
+                <Route
+                  path='/it-dashboard/biometrix'
+                  element={<BiometrixAudit />}
+                />
+                <Route
+                  path='/it-dashboard/desktop'
+                  element={<DesktopAudit />}
+                />
+                <Route
+                  path='/it-dashboard/keyboard'
+                  element={<KeyboardAudit />}
+                />
+                <Route path='/it-dashboard/laptop' element={<LaptopAudit />} />
+                <Route
+                  path='/it-dashboard/monitor'
+                  element={<MonitorAudit />}
+                />
+                <Route path='/it-dashboard/mouse' element={<MouseAudit />} />
+                <Route
+                  path='/it-dashboard/printer'
+                  element={<PrinterAudit />}
+                />
+                <Route
+                  path='/it-dashboard/projector'
+                  element={<ProjectorAudit />}
+                />
+                <Route path='/it-dashboard/router' element={<RouterAudit />} />
+                <Route path='/it-dashboard/tab' element={<TabAudit />} />
+                <Route path='/it-dashboard/tv' element={<TvAudit />} />
+                <Route path='/it-dashboard/ups' element={<UpsAudit />} />
+                <Route
+                  path='/it-dashboard/fetchassets'
+                  element={<FetchAssets />}
+                />
+                <Route path='/it-dashboard/edit' element={<EditAssetPage />} />
               </Route>
             </Route>
             {/* we want to protect these routes */}
