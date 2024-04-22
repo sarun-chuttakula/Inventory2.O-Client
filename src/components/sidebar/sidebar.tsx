@@ -1,17 +1,21 @@
-import React from 'react'
-// import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 function MainSidebar() {
-  // const { logout } = useAuth()
   const location = useLocation()
-
-  // const handleLogout = () => {
-  //   console.log('Logging out')
-  //   logout()
-  // }
-
   const path = location.pathname.split('/')[1]
+  const [showPODashboardOptions, setShowPODashboardOptions] = useState(false)
+  const [showITDashboardOptions, setShowITDashboardOptions] = useState(false)
+
+  const togglePODashboardOptions = () => {
+    setShowPODashboardOptions(!showPODashboardOptions)
+    setShowITDashboardOptions(false) // Close IT Dashboard options if open
+  }
+
+  const toggleITDashboardOptions = () => {
+    setShowITDashboardOptions(!showITDashboardOptions)
+    setShowPODashboardOptions(false) // Close PO Dashboard options if open
+  }
 
   return (
     <div className='sidebar'>
@@ -26,37 +30,6 @@ function MainSidebar() {
             HOME
           </Link>
         </li>
-        {/* <li className='sidebar-dropdown'>
-          <a href='/items' className='sidebar-link'>
-            ITEMS
-          </a>
-          <div className='sidebar-submenu'>
-            <Link to='/laptop' className='sidebar-submenu-item'>
-              Laptop
-            </Link>
-            <Link to='/desktop' className='sidebar-submenu-item'>
-              Desktop
-            </Link>
-            <Link to='/monitor' className='sidebar-submenu-item'>
-              Monitor
-            </Link>
-            <Link to='/keyboard' className='sidebar-submenu-item'>
-              Keyboard
-            </Link>
-            <Link to='/mouse' className='sidebar-submenu-item'>
-              Mouse
-            </Link>
-            <Link to='/tab' className='sidebar-submenu-item'>
-              Tab/iPad/Mobile
-            </Link>
-            <Link to='/printer' className='sidebar-submenu-item'>
-              Printer
-            </Link>
-            <Link to='/router' className='sidebar-submenu-item'>
-              Router
-            </Link>
-          </div>
-        </li> */}
         <li>
           <Link
             to={{
@@ -69,19 +42,49 @@ function MainSidebar() {
           </Link>
         </li>
         <li>
-          <Link to='/purchase-dashboard' className='sidebar-link'>
+          <li onClick={togglePODashboardOptions} className='sidebar-link'>
             PO Dashboard
-          </Link>
+          </li>
+          {/* Sub-options for PO Dashboard */}
+          {showPODashboardOptions && (
+            <ul className='sub-options'>
+              <li>
+                <Link
+                  to='/purchase-dashboard/orders'
+                  className='sub-option-link'
+                >
+                  Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/purchase-dashboard/invoices'
+                  className='sub-option-link'
+                >
+                  Invoices
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
         <li>
-          <Link to='/it-dashboard' className='sidebar-link'>
+          <li onClick={toggleITDashboardOptions} className='sidebar-link'>
             IT Dashboard
-          </Link>
-        </li>
-        <li>
-          {/* <button className='sidebar-link' onClick={handleLogout}>
-            Logout
-          </button> */}
+          </li>
+          {showITDashboardOptions && (
+            <ul className='sub-options'>
+              <li>
+                <Link to='/it-dashboard/issues' className='sub-option-link'>
+                  Issues
+                </Link>
+              </li>
+              <li>
+                <Link to='/it-dashboard/tasks' className='sub-option-link'>
+                  Tasks
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
     </div>
