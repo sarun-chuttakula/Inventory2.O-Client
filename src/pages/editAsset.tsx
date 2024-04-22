@@ -39,8 +39,11 @@ const EditAssetPage: React.FC = () => {
   }
 
   // Dropdown options for "make" field
-  const makeOptions = ['dell', 'hp', 'assembled', 'lenovo', 'others']
-
+  const dropdownOptions: { [key: string]: string[] } = {
+    make: ['lenovo', 'dell', 'hp'],
+    city: ['Hyderabad', 'Bangalore', 'Kolkata'],
+    // Add more fields and options as needed
+  }
   // Define the unwanted headers to be removed
   const unwantedHeaders = [
     'id',
@@ -74,14 +77,14 @@ const EditAssetPage: React.FC = () => {
                   {key.charAt(0).toUpperCase() + key.slice(1)}:
                 </label>
                 {/* Render a dropdown for the "make" field */}
-                {key === 'make' ? (
+                {dropdownOptions[key] ? (
                   <select
                     id={key}
                     value={value}
-                    onChange={(e) => handleInputChange(key, e.target.value)}
                     className='edit-input'
+                    onChange={(e) => handleInputChange(key, e.target.value)}
                   >
-                    {makeOptions.map((option) => (
+                    {dropdownOptions[key].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>

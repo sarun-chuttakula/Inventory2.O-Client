@@ -61,7 +61,7 @@ function MainSidebar() {
       </div>
 
       <Link to='/' className={`sidebar-link ${path === '' ? 'active' : ''}`}>
-        HOME
+        Home
       </Link>
 
       <Link

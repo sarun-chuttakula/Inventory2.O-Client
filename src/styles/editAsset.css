@@ -5,6 +5,7 @@
     flex-direction: column; /* Stack children vertically */
     align-items: center;
     border: 1px solid black;
+    padding-bottom: 20px;
   }
   
   .edit-form {
