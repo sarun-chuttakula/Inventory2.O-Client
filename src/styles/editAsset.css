@@ -1,65 +1,69 @@
 .editasset-container {
-    width: 80%; /* Define the width of the container */
-    margin: 0 auto; /* Center the container horizontally */
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center;
-    border: 1px solid black;
-  }
-  
-  .edit-form {
-    display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;
-    width: 100%;
+  width: 80%; 
+  margin: 0 auto; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  border: 1px solid #ddd;
+  padding-top: 30px;
+}
 
-  }
-  
-  .edit-field {
-    width: 45%; /* Adjust width for two columns */
-    margin-bottom: 20px;
-    margin-right: 5%; /* Add some space between columns */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-  }
-  
-  .edit-field:last-child {
-    margin-right: 0; /* Remove margin from last field to avoid extra space */
-  }
 
-  .edit-field:last-child {
-    width: calc(50%-5%);
-    margin: 0;
-    
-  }
-  
-  .edit-field-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .edit-label {
-    margin: 10px;
-    width: 370px;
-    
-  }
-  
-  .edit-input {
-    width: 80%; /* Input fields take up full width */
-    height: 50px;
-    padding-left: 15px;
-    border-radius: 7px;
-    background-color: rgb(236, 234, 234);
-    border: none;
-  }
+.edit-container {
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .edit-submit {
-    text-align: center;
-    width: 150px;
-    height: 40px;
-    border: 5px;
-    background-color: dodgerblue;
-    color: white;
-  }
-  
+
+.edit-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.edit-field {
+  width: 45%; 
+  margin-bottom: 20px;
+  margin-right: 5%; 
+  box-sizing: border-box; 
+}
+
+/* .edit-field:last-child {
+  margin: 0;
+} */
+
+.edit-field-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.edit-label {
+  margin: 10px;
+  width: 370px;
+
+}
+
+.edit-input {
+  width: 80%; 
+  height: 50px;
+  padding-left: 15px;
+  border-radius: 7px;
+  background-color: rgb(236, 234, 234);
+  border: none;
+}
+.edit-submit {
+  width: 150px;
+  height: 40px;
+  margin: 20px; 
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
