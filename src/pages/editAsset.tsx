@@ -44,6 +44,12 @@ const EditAssetPage: React.FC = () => {
     city: ['Hyderabad', 'Bangalore', 'Kolkata'],
     // Add more fields and options as needed
   }
+
+  const radioOptions: { [key: string]: string[] } = {
+    status: ['Working', 'Not Working'],
+    graphics: ['2GB', '4GB', '5GB'],
+    // Add more fields and options as needed
+  }
   // Define the unwanted headers to be removed
   const unwantedHeaders = [
     'id',
@@ -90,6 +96,23 @@ const EditAssetPage: React.FC = () => {
                       </option>
                     ))}
                   </select>
+                ) : radioOptions[key] ? (
+                  <div>
+                    {radioOptions[key].map((option) => (
+                      <label key={option}>
+                        <input
+                          type='radio'
+                          name={key}
+                          value={option}
+                          checked={value === option}
+                          onChange={(e) =>
+                            handleInputChange(key, e.target.value)
+                          }
+                        />
+                        {option}
+                      </label>
+                    ))}
+                  </div>
                 ) : (
                   // Render an input field for other fields
                   <input
