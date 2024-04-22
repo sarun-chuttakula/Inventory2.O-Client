@@ -47,11 +47,11 @@
     justify-content: space-around;
 }
 
-form{
+.sinup-form{
     text-align: center;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=number] {
+.textfield, .passwordfield, .emailfield {
     width: 250px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -63,21 +63,12 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     color: 	black;
 }
 
-input[type=password] {
+.passwordfield {
     padding-right: 30px; 
 } 
 
-input[type=checkbox] {
-    text-align: right;
-    margin-right: 4px;
-}
 
-.remember-me {
-    font-size: 14px; /* Adjust the font size as needed */
-}
-
-
-button {
+.submit-btn, .login-btn {
     background-color: 	#1E90FF;
     color: white;
     margin: 10px 0;
@@ -89,7 +80,7 @@ button {
     text-align: center;
 }
 
-a {
+.login-link {
     text-decoration: none;
     color: white;
 }

@@ -183,6 +183,7 @@ const FetchAssets = () => {
                         'updated_at',
                         'created_by',
                         'updated_by',
+                        'is_active',
                       ].includes(header),
                   )
                   .map((header: string) => (
@@ -192,41 +193,53 @@ const FetchAssets = () => {
               </tr>
             </thead>
             <tbody>
-              {assetData[assetType].map((asset: any, index: number) =>
-                asset.values.map((value: any, valueIndex: number) => (
-                  <tr key={`${index}-${valueIndex}`}>
-                    {asset.headers.map((header: string, idx: number) => (
+              {assetData[assetType].map((asset: any, index: number) => (
+                <tr key={index}>
+                  {asset.headers
+                    .filter(
+                      (header: string) =>
+                        ![
+                          'id',
+                          'created_at',
+                          'updated_at',
+                          'created_by',
+                          'updated_by',
+                          'is_active',
+                        ].includes(header),
+                    )
+                    .map((header: string, idx: number) => (
                       <td
                         key={idx}
-                        onClick={() => handleCopyToClipboard(value[header])}
+                        onClick={() =>
+                          handleCopyToClipboard(asset.values[0][header])
+                        }
                       >
-                        {value[header]}
+                        {asset.values[0][header]}
                       </td>
                     ))}
-                    <td>
-                      <Link
-                        className='action-link'
-                        to={{
-                          pathname: '/edit',
-                        }}
-                        state={{ assetType, rowData: value }}
-                      >
-                        <FaEdit className='edit-icon' />
-                      </Link>
-                      <FaTrash
-                        className='delete-icon'
-                        onClick={() => handleDelete(assetType, index)}
-                      />
-                      {/* <button
+                  <td>
+                    <Link
+                      className='action-link'
+                      to={{
+                        pathname: '/edit',
+                      }}
+                      state={{ assetType, rowData: asset.values[0] }}
+                    >
+                      <FaEdit className='edit-icon' />
+                    </Link>
+                    <FaTrash
+                      className='delete-icon'
+                      onClick={() => handleDelete(assetType, index)}
+                    />
+                    {/* <button
                         className='action-button'
                         onClick={() => handleDelete(assetType, index)}
                       >
                         Delete
                       </button> */}
-                    </td>
-                  </tr>
-                )),
-              )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

@@ -27,9 +27,10 @@ const SignupScreen: React.FC = () => {
     <div className='main-container'>
       <div className='container'>
         <div className='login-container'>
-          <form onSubmit={handleSubmit}>
+          <form className='sinup-form' onSubmit={handleSubmit}>
             <h3>Sign Up</h3>
             <input
+              className='textfield'
               type='text'
               placeholder='firstName'
               value={formData.firstname}
@@ -37,6 +38,7 @@ const SignupScreen: React.FC = () => {
               required
             />
             <input
+              className='emailfield'
               type='email'
               placeholder='Email'
               value={formData.email}
@@ -44,6 +46,7 @@ const SignupScreen: React.FC = () => {
               required
             />
             <input
+              className='textfield'
               type='text'
               placeholder='Username'
               value={formData.username}
@@ -51,13 +54,18 @@ const SignupScreen: React.FC = () => {
               required
             />
             <input
+              className='passwordfield'
               type='password'
               placeholder='Password'
               value={formData.password}
               onChange={handleChange}
               required
             />
-            <button type='submit' style={{ textAlign: 'center' }}>
+            <button
+              className='submit-btn'
+              type='submit'
+              style={{ textAlign: 'center' }}
+            >
               Sign Up
             </button>
             <br />
@@ -70,8 +78,14 @@ const SignupScreen: React.FC = () => {
           </div>
           <div>
             <p>Already have an account?</p>
-            <button type='submit' style={{ textAlign: 'center' }}>
-              <a href='/login'>Login</a>
+            <button
+              className='login-btn'
+              type='submit'
+              style={{ textAlign: 'center' }}
+            >
+              <a className='login-link' href='/login'>
+                Login
+              </a>
             </button>
             <br />
           </div>

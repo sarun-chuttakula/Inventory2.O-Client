@@ -1,43 +1,37 @@
-/* .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+.editasset-container {
+    width: 60%; /* Set the width as needed */
+  margin: 0 auto; /* Center align the container */
+  padding: 20px;
+  border: 1px solid red;
+  }
+
+  .main-heading {
+    text-align: center;
+    font-size: 35px;
+  } 
+
+  .side-heading {
+    font-size: 25px;
+    font-weight: 600;
   }
   
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  form {
-    margin-top: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type='text'],
-  select {
-    width: 100%;
-    padding: 8px;
+  .edit-field {
+    /* display: flex;
+    align-items: center; */
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
   }
   
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .edit-label {
+    width: 150px;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  .edit-input {
+    margin-left: 10px;
+    width : 150px;
+    height: 30px;
   }
-   */
+  
+  .edit-button {
+    margin-top: 10px;
+  }
+  
