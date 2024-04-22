@@ -1,6 +1,23 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
+
+// Import your audit components
+import AcAudit from '../../pages/ac'
+import AirpurifierAudit from '../../pages/airpurifier'
+import BiometrixAudit from '../../pages/biometrix'
+import DesktopAudit from '../../pages/desktop'
+import KeyboardAudit from '../../pages/keyboard'
+import LaptopAudit from '../../pages/laptop'
+import MonitorAudit from '../../pages/monitor'
+import TabAudit from '../../pages/tab'
+import TvAudit from '../../pages/tv'
+import MouseAudit from '../../pages/mouse'
+import PrinterAudit from '../../pages/printer'
+import ProjectorAudit from '../../pages/projector'
+import RouterAudit from '../../pages/router'
+import UpsAudit from '../../pages/ups'
+
 function MainSidebar() {
   const location = useLocation()
   const path = location.pathname.split('/')[1]
@@ -16,6 +33,24 @@ function MainSidebar() {
     setShowITDashboardOptions(!showITDashboardOptions)
     setShowPODashboardOptions(false)
   }
+
+  // Define your IT dashboard routes and corresponding component mappings
+  const itDashboardRoutes = [
+    { path: '/ac', component: <AcAudit /> },
+    { path: '/airpurifier', component: <AirpurifierAudit /> },
+    { path: '/biometrix', component: <BiometrixAudit /> },
+    { path: '/desktop', component: <DesktopAudit /> },
+    { path: '/keyboard', component: <KeyboardAudit /> },
+    { path: '/laptop', component: <LaptopAudit /> },
+    { path: '/monitor', component: <MonitorAudit /> },
+    { path: '/mouse', component: <MouseAudit /> },
+    { path: '/printer', component: <PrinterAudit /> },
+    { path: '/projector', component: <ProjectorAudit /> },
+    { path: '/router', component: <RouterAudit /> },
+    { path: '/tab', component: <TabAudit /> },
+    { path: '/tv', component: <TvAudit /> },
+    { path: '/ups', component: <UpsAudit /> },
+  ]
 
   return (
     <div className='sidebar'>
@@ -39,6 +74,7 @@ function MainSidebar() {
         Fetch
       </Link>
 
+      {/* PO Dashboard */}
       <div
         className={`sidebar-link ${showPODashboardOptions ? 'active' : ''}`}
         onClick={togglePODashboardOptions}
@@ -61,6 +97,7 @@ function MainSidebar() {
         </div>
       )}
 
+      {/* IT Dashboard */}
       <div
         className={`sidebar-link ${showITDashboardOptions ? 'active' : ''}`}
         onClick={toggleITDashboardOptions}
@@ -74,12 +111,16 @@ function MainSidebar() {
       </div>
       {showITDashboardOptions && (
         <div className='sub-options'>
-          <Link to='/it-dashboard/issues' className='sub-option-link'>
-            Issues
-          </Link>
-          <Link to='/it-dashboard/tasks' className='sub-option-link'>
-            Tasks
-          </Link>
+          {itDashboardRoutes.map((route, index) => (
+            <Link
+              key={index}
+              to={`/it-dashboard${route.path}`}
+              className='sub-option-link'
+            >
+              {route.path.charAt(1).toUpperCase() +
+                route.path.slice(2).toLowerCase()}
+            </Link>
+          ))}
         </div>
       )}
     </div>
