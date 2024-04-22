@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
+import { Link } from 'react-router-dom'
 
 const ProfileDropdown: React.FC = () => {
   const { logout } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  // const id = authData?.id
 
   const handleLogout = () => {
     console.log('Logging out')
@@ -24,9 +26,17 @@ const ProfileDropdown: React.FC = () => {
 
       {isOpen && (
         <div className='dropdown-menu'>
-          <button onClick={() => console.log('Edit Profile')}>
+          <Link
+            to={{
+              pathname: '/editProfile',
+            }}
+            // state={{
+            //   id: id,
+            // }}
+            className='dropdown-item profile-link'
+          >
             Edit Profile
-          </button>
+          </Link>
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}
