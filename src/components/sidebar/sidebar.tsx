@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
+import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 function MainSidebar() {
   const location = useLocation()
   const path = location.pathname.split('/')[1]
@@ -44,6 +44,11 @@ function MainSidebar() {
         onClick={togglePODashboardOptions}
       >
         PO Dashboard
+        {showPODashboardOptions ? (
+          <MdArrowDropUp className='arrow-icon' />
+        ) : (
+          <MdArrowDropDown className='arrow-icon' />
+        )}
       </div>
       {showPODashboardOptions && (
         <div className='sub-options'>
@@ -61,6 +66,11 @@ function MainSidebar() {
         onClick={toggleITDashboardOptions}
       >
         IT Dashboard
+        {showITDashboardOptions ? (
+          <MdArrowDropUp className='arrow-icon' />
+        ) : (
+          <MdArrowDropDown className='arrow-icon' />
+        )}
       </div>
       {showITDashboardOptions && (
         <div className='sub-options'>
