@@ -22,7 +22,7 @@ export default function PurchaseDashboard() {
                 {row.map((item, colIndex) => (
                   <td key={colIndex}>
                     <Link
-                      to={`/${item.toLowerCase()}`} // Use the item as part of the route
+                      to={`/purchase-dashboard/${item.toLowerCase()}`} // Use the item as part of the route
                       className='btn btn-xl btn-outline-dark btn-info text-primary'
                       role='button'
                     >
