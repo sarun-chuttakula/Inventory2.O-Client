@@ -55,42 +55,54 @@ const EditAssetPage: React.FC = () => {
     <div className='editasset-container'>
       <h1 className='main-heading'>Edit Asset</h1>
       <p className='side-heading'>Asset Type: {assetType}</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='edit-form'>
         {Object.entries(editedData)
           // Filter out unwanted headers
           .filter(([key]) => !unwantedHeaders.includes(key))
-          .map(([key, value]) => (
-            <div className='edit-field' key={key}>
-              <label htmlFor={key} className='edit-label'>
-                {key}:
-              </label>
-              {/* Render a dropdown for the "make" field */}
-              {key === 'make' ? (
-                <select
-                  id={key}
-                  value={value}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                  className='edit-input'
-                >
-                  {makeOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                // Render an input field for other fields
-                <input
-                  type='text'
-                  id={key}
-                  value={value}
-                  onChange={(e) => handleInputChange(key, e.target.value)}
-                  className='edit-input'
-                />
-              )}
+          .map(([key, value], index, array) => (
+            // <div className='edit-field' key={key}>
+            <div
+              className={`edit-field ${
+                index === array.length - 1 && array.length % 2 !== 0
+                  ? 'full-width'
+                  : ''
+              }`}
+              key={key}
+            >
+              <div className='edit-field-inner'>
+                <label htmlFor={key} className='edit-label'>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}:
+                </label>
+                {/* Render a dropdown for the "make" field */}
+                {key === 'make' ? (
+                  <select
+                    id={key}
+                    value={value}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    className='edit-input'
+                  >
+                    {makeOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  // Render an input field for other fields
+                  <input
+                    type='text'
+                    id={key}
+                    value={value}
+                    onChange={(e) => handleInputChange(key, e.target.value)}
+                    className='edit-input'
+                  />
+                )}
+              </div>
             </div>
           ))}
-        <button type='submit'>Save Changes</button>
+        <button className='edit-submit' type='submit'>
+          Save Changes
+        </button>
       </form>
     </div>
   )

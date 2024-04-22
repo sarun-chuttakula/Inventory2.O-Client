@@ -1,37 +1,65 @@
 .editasset-container {
-    width: 60%; /* Set the width as needed */
-  margin: 0 auto; /* Center align the container */
-  padding: 20px;
-  border: 1px solid red;
+    width: 80%; /* Define the width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;
+    border: 1px solid black;
   }
+  
+  .edit-form {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    width: 100%;
 
-  .main-heading {
-    text-align: center;
-    font-size: 35px;
-  } 
-
-  .side-heading {
-    font-size: 25px;
-    font-weight: 600;
   }
   
   .edit-field {
-    /* display: flex;
-    align-items: center; */
-    margin-bottom: 10px;
+    width: 45%; /* Adjust width for two columns */
+    margin-bottom: 20px;
+    margin-right: 5%; /* Add some space between columns */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  }
+  
+  .edit-field:last-child {
+    margin-right: 0; /* Remove margin from last field to avoid extra space */
+  }
+
+  .edit-field:last-child {
+    width: calc(50%-5%);
+    margin: 0;
+    
+  }
+  
+  .edit-field-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
   }
   
   .edit-label {
-    width: 150px;
+    margin: 10px;
+    width: 370px;
+    
   }
   
   .edit-input {
-    margin-left: 10px;
-    width : 150px;
-    height: 30px;
+    width: 80%; /* Input fields take up full width */
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 7px;
+    background-color: rgb(236, 234, 234);
+    border: none;
   }
-  
-  .edit-button {
-    margin-top: 10px;
+
+  .edit-submit {
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    border: 5px;
+    background-color: dodgerblue;
+    color: white;
   }
   
