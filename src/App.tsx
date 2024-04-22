@@ -25,7 +25,7 @@ import LoginScreen from './pages/Login'
 import SignupScreen from './pages/Signup'
 import Unauthorized from './components/Unauthorized'
 import Missing from './components/Missing'
-import MainNavbar from './components/sidebar/sidebar'
+import MainSidebar from './components/sidebar/sidebar'
 import Main from './pages/main'
 import PurchaseDashboard from './pages/PurchaseDashboard'
 import PurchaseRegister from './pages/purchase-register'
@@ -38,7 +38,7 @@ function App() {
     <div className={authData ? 'app-container' : 'APP'}>
       {authData && (
         <div className='app-sidebar'>
-          <MainNavbar />
+          <MainSidebar />
         </div>
       )}
       <div className={authData ? 'app-content' : ''}>
