@@ -46,6 +46,11 @@ const EditProfile: React.FC = () => {
     'created_by',
     'updated_by',
     'is_active',
+    'profilePic',
+    'lastlogin',
+    'password',
+    'isauthenticated',
+    'role',
   ]
 
   return (
