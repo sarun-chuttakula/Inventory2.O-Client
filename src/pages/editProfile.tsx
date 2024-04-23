@@ -4,10 +4,7 @@ import useAuth from '../hooks/useAuth'
 
 const EditProfile: React.FC = () => {
   const { authData } = useAuth()
-  const [userData, setUserData] = useState({
-    firstname: authData?.firstname || '',
-    email: authData?.email || '',
-  })
+  const [userData, setUserData] = useState<{ [key: string]: string }>({})
   const id = authData?.id || ''
   const token = authData?.accesstoken || ''
 
@@ -15,10 +12,9 @@ const EditProfile: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await getUserById(token, id)
-        // Set user data fetched from API
+        console.log(response)
         setUserData({
-          firstname: response.data.firstname,
-          email: response.data.email,
+          ...response.data,
         })
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -31,7 +27,6 @@ const EditProfile: React.FC = () => {
     event.preventDefault()
     try {
       await updateUser(token, id, userData)
-      // Optionally, you can update the authData as well if needed
     } catch (error) {
       console.error('Error updating user data:', error)
     }
@@ -49,20 +44,24 @@ const EditProfile: React.FC = () => {
     <div className='edit-profile'>
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='First Name'
-          name='firstname'
-          value={userData.firstname}
-          onChange={handleInputChange}
-        />
-        <input
-          type='email'
-          placeholder='Email'
-          name='email'
-          value={userData.email}
-          onChange={handleInputChange}
-        />
+        {/* Render key-value pairs as rows in a table-like layout */}
+        <table>
+          <tbody>
+            {Object.entries(userData).map(([key, value]) => (
+              <tr key={key}>
+                <td>{key}</td>
+                <td>
+                  <input
+                    type='text'
+                    name={key}
+                    value={value || ''} // Use empty string if value is null or undefined
+                    onChange={handleInputChange}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <button type='submit'>Save Changes</button>
       </form>
     </div>
