@@ -29,5 +29,4 @@ export interface keyboardFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

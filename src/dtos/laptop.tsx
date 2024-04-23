@@ -29,5 +29,4 @@ export interface laptopFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

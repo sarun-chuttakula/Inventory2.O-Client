@@ -29,5 +29,4 @@ export interface tvFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

@@ -49,6 +49,7 @@ const EditAssetPage: React.FC = () => {
     'created_by',
     'updated_by',
     'is_active',
+    'updatedbyname',
   ]
 
   return (

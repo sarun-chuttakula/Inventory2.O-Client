@@ -29,5 +29,4 @@ export interface airpurifierFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

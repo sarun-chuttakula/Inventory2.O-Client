@@ -29,5 +29,4 @@ export interface printerFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

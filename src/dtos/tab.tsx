@@ -29,5 +29,4 @@ export interface tabFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }
