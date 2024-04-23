@@ -8,6 +8,7 @@ const ProfileDropdown: React.FC = () => {
   // const id = authData?.id
 
   const handleLogout = () => {
+    setIsOpen(false)
     console.log('Logging out')
     logout()
   }
@@ -34,6 +35,7 @@ const ProfileDropdown: React.FC = () => {
             //   id: id,
             // }}
             className='dropdown-item profile-link'
+            onClick={() => setIsOpen(false)}
           >
             Edit Profile
           </Link>
