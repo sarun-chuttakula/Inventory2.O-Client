@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Table } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import InputText from '../components/inputText/inputText'
 import { pantryFormData } from '../dtos'
 import { createPantry } from '../api/pantry.api'

@@ -1,15 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Table } from 'react-bootstrap'
-import {
-  MakeOptions,
-  CityOptions,
-  OperatingSystem,
-  ProcessorOptions,
-  RAMOptions,
-  StorageOptions,
-  GraphicsOptions,
-  StatusOptions,
-} from '../enums'
+import { Button, Form } from 'react-bootstrap'
 
 import InputText from '../components/inputText/inputText'
 
