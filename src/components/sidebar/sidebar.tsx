@@ -17,6 +17,8 @@ import PrinterAudit from '../../pages/printer'
 import ProjectorAudit from '../../pages/projector'
 import RouterAudit from '../../pages/router'
 import UpsAudit from '../../pages/ups'
+import Medicine from '../../pages/medicine'
+import Pantry from '../../pages/pantry'
 
 function MainSidebar() {
   const location = useLocation()
@@ -50,6 +52,8 @@ function MainSidebar() {
     { path: '/tab', component: <TabAudit /> },
     { path: '/tv', component: <TvAudit /> },
     { path: '/ups', component: <UpsAudit /> },
+    { path: '/medicine', component: <Medicine /> },
+    { path: '/pantry', component: <Pantry /> },
   ]
 
   return (
