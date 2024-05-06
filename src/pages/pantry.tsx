@@ -8,12 +8,12 @@ import useAuth from '../hooks/useAuth'
 const Pantry: React.FC = () => {
   const { authData } = useAuth()
   const token = authData?.accesstoken as string
-  const [formData, setFormData] = useState<pantryFormData>({
+  const [formData, setFormData] = useState<any>({
     item_name: '',
     item_description: '',
     item_quantity: 0,
-    item_date_of_purchase: new Date(),
-    item_expiry_date: new Date(),
+    item_date_of_purchase: new Date().toISOString().split('T')[0],
+    item_expiry_date: new Date().toISOString().split('T')[0],
   })
 
   const handleChange = (
@@ -23,13 +23,14 @@ const Pantry: React.FC = () => {
     setFormData((prevData: any) => ({ ...prevData, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(formData)
     try {
-      createPantry(token, formData)
+      await createPantry(token, formData)
+      console.log('Pantry item created successfully')
     } catch (err) {
-      console.log(err)
+      console.error('Error creating pantry item:', err)
     }
   }
 
@@ -66,7 +67,7 @@ const Pantry: React.FC = () => {
           <input
             type='date'
             name='item_date_of_purchase'
-            value={formData.item_date_of_purchase.toISOString().split('T')[0]}
+            value={formData.item_date_of_purchase}
             placeholder='Enter pantry item date of purchase'
             onChange={handleChange}
           />
@@ -76,7 +77,7 @@ const Pantry: React.FC = () => {
           <input
             type='date'
             name='item_expiry_date'
-            value={formData.item_expiry_date.toISOString().split('T')[0]}
+            value={formData.item_expiry_date}
             placeholder='Enter pantry item expiry date'
             onChange={handleChange}
           />
