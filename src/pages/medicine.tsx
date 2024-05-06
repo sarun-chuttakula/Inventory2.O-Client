@@ -14,9 +14,9 @@ const Medicine: React.FC = () => {
     medicine_name: '',
     vendor: '',
     batch_no: '',
-    medicine_quantity: '',
-    medicine_date_of_purchase: '',
-    medicine_expiry_date: '',
+    medicine_quantity: 0,
+    medicine_date_of_purchase: new Date(),
+    medicine_expiry_date: new Date(),
   })
 
   const handleChange = (
@@ -61,27 +61,38 @@ const Medicine: React.FC = () => {
           value={formData.batch_no}
           onChange={handleChange}
         />
-        <InputText
-          label='Quantity'
-          name='quantity'
-          placeholder='Enter quantity'
-          value={formData.medicine_quantity}
-          onChange={handleChange}
-        />
-        <InputText
-          label='Date of Purchase'
-          name='date_of_purchase'
-          placeholder='Enter date of purchase'
-          value={formData.medicine_date_of_purchase}
-          onChange={handleChange}
-        />
-        <InputText
-          label='Expiry Date'
-          name='expiry_date'
-          placeholder='Enter expiry date'
-          value={formData.medicine_expiry_date}
-          onChange={handleChange}
-        />
+        <div className='Quatity'>
+          <label>Medicine Quantity:</label>
+          <input
+            type='number'
+            name='medicine_quantity'
+            placeholder='Enter quantity'
+            value={formData.medicine_quantity}
+            onChange={handleChange}
+          />
+        </div>
+        <div className='date_of_purchase'>
+          <label>Item Date of Purchase:</label>
+          <input
+            type='date'
+            name='date_of_purchase'
+            value={
+              formData.medicine_date_of_purchase.toISOString().split('T')[0]
+            }
+            placeholder='Enter date of purchase'
+            onChange={handleChange}
+          />
+        </div>
+        <div className='item_expiry_date'>
+          <label>Item Expiry Date:</label>
+          <input
+            type='date'
+            name='item_expiry_date'
+            value={formData.medicine_expiry_date.toISOString().split('T')[0]}
+            placeholder='Enter expiry date'
+            onChange={handleChange}
+          />
+        </div>
         <Button variant='primary' type='submit'>
           Submit
         </Button>

@@ -32,7 +32,7 @@ function Dashboard() {
                 <td key={colIndex}>
                   <Link
                     to={`/it-dashboard/${item.toLowerCase()}`} // Use the item as part of the route
-                    className='btn btn-xl btn-outline-dark btn-info text-primary'
+                    className='assets'
                     role='button'
                   >
                     {item}

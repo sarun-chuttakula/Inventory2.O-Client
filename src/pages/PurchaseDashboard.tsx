@@ -3,17 +3,11 @@ import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default function PurchaseDashboard() {
-  const data = [
-    ['PurchaseRegister'],
-    // ['Monitor', 'Tab/IPAD/MOBILE', 'TV'],
-    // ['Monitor', 'Tab', 'TV'],
-    // ['Keyboard', 'Mouse', 'Router'],
-    // ['Airpurifier', 'Biometrix', 'Projector'],
-    // ['UPS', 'AC'],
-  ]
+  const data = [['PurchaseRegister']]
   return (
     <>
       <>
+        <div className='purchase-dashboard'></div>
         <h3 className='center-heading'>INVENTORY AUDIT SHEET</h3>
         <Table bordered>
           <tbody>
@@ -23,7 +17,7 @@ export default function PurchaseDashboard() {
                   <td key={colIndex}>
                     <Link
                       to={`/purchase-dashboard/${item.toLowerCase()}`} // Use the item as part of the route
-                      className='btn btn-xl btn-outline-dark btn-info text-primary'
+                      className='assets'
                       role='button'
                     >
                       {item}
