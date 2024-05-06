@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Button, Form, Table } from 'react-bootstrap'
-import '../styles/ups.css'
 import {
   MakeOptions,
   CityOptions,

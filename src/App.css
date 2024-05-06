@@ -34,14 +34,14 @@
   width: 50%;
   height: 600px;
   margin: 0 auto; /* Center the table horizontally */
-  background-color: DodgerBlue; /* Blue background color */
+  /* background-color: DodgerBlue; */
   color: white; /* White text color */
   border-radius: 10px;
 }
 
 .custom-table td {
-  background-color: DodgerBlue;
-  border: 1px solid white;
+  /* background-color: DodgerBlue; */
+  border: 2px solid #f8f8ff;
   color: black;
 }
 
