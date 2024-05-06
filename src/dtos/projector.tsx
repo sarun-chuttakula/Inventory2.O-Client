@@ -29,5 +29,4 @@ export interface projectorFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

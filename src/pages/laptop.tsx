@@ -38,7 +38,6 @@ const LaptopAuditForm: React.FC = () => {
     user: '',
     status: StatusOptions.Working,
     remarks: '',
-    updatedbyname: '',
   })
 
   const handleChange = (
@@ -383,13 +382,7 @@ const LaptopAuditForm: React.FC = () => {
                 value={formData.remarks}
                 onChange={handleChange}
               />
-              <InputText
-                label='Updated By'
-                name='updatedbyname'
-                placeholder='Enter the Updated By'
-                value={formData.updatedbyname}
-                onChange={handleChange}
-              />
+
               <tr>
                 <td colSpan={2}></td>
                 <td colSpan={3}>

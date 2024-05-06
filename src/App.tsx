@@ -32,6 +32,9 @@ import PurchaseRegister from './pages/purchase-register'
 import FetchAssets from './pages/fetchAssets'
 import EditAssetPage from './pages/editAsset'
 import ProfileDropdown from './components/profileButton/profileButton'
+import EditProfile from './pages/editProfile'
+import Medicine from './pages/medicine'
+import Pantry from './pages/pantry'
 function App() {
   const { authData } = useAuth()
   return (
@@ -126,8 +129,11 @@ function App() {
                   element={<FetchAssets />}
                 />
                 <Route path='/it-dashboard/edit' element={<EditAssetPage />} />
+                <Route path='/editProfile' element={<EditProfile />} />
               </Route>
+              <Route path='/it-dashboard/medicine' element={<Medicine />} />
             </Route>
+            <Route path='/it-dashboard/pantry' element={<Pantry />} />
             {/* we want to protect these routes */}
           </Routes>
         </div>

@@ -29,5 +29,4 @@ export interface routerFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

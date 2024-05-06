@@ -29,5 +29,4 @@ export interface upsFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }

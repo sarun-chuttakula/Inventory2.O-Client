@@ -39,17 +39,8 @@ const EditAssetPage: React.FC = () => {
   }
 
   // Dropdown options for "make" field
-  const dropdownOptions: { [key: string]: string[] } = {
-    make: ['lenovo', 'dell', 'hp'],
-    city: ['Hyderabad', 'Bangalore', 'Kolkata'],
-    // Add more fields and options as needed
-  }
+  const makeOptions = ['dell', 'hp', 'assembled', 'lenovo', 'others']
 
-  const radioOptions: { [key: string]: string[] } = {
-    status: ['Working', 'Not Working'],
-    graphics: ['2GB', '4GB', '5GB'],
-    // Add more fields and options as needed
-  }
   // Define the unwanted headers to be removed
   const unwantedHeaders = [
     'id',
@@ -58,6 +49,7 @@ const EditAssetPage: React.FC = () => {
     'created_by',
     'updated_by',
     'is_active',
+    'updatedbyname',
   ]
 
   return (
@@ -65,67 +57,52 @@ const EditAssetPage: React.FC = () => {
       <h1 className='main-heading'>Edit Asset</h1>
       <p className='side-heading'>Asset Type: {assetType}</p>
       <form onSubmit={handleSubmit} className='edit-form'>
-        {Object.entries(editedData)
-          // Filter out unwanted headers
-          .filter(([key]) => !unwantedHeaders.includes(key))
-          .map(([key, value], index, array) => (
-            // <div className='edit-field' key={key}>
-            <div
-              className={`edit-field ${
-                index === array.length - 1 && array.length % 2 !== 0
-                  ? 'full-width'
-                  : ''
-              }`}
-              key={key}
-            >
-              <div className='edit-field-inner'>
-                <label htmlFor={key} className='edit-label'>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}:
-                </label>
-                {/* Render a dropdown for the "make" field */}
-                {dropdownOptions[key] ? (
-                  <select
-                    id={key}
-                    value={value}
-                    className='edit-input'
-                    onChange={(e) => handleInputChange(key, e.target.value)}
-                  >
-                    {dropdownOptions[key].map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                ) : radioOptions[key] ? (
-                  <div>
-                    {radioOptions[key].map((option) => (
-                      <label key={option}>
-                        <input
-                          type='radio'
-                          name={key}
-                          value={option}
-                          checked={value === option}
-                          onChange={(e) =>
-                            handleInputChange(key, e.target.value)
-                          }
-                        />
-                        {option}
-                      </label>
-                    ))}
-                  </div>
-                ) : (
-                  // Render an input field for other fields
-                  <input
-                    type='text'
-                    id={key}
-                    value={value}
-                    onChange={(e) => handleInputChange(key, e.target.value)}
-                    className='edit-input'
-                  />
-                )}
+        <div className='edit-container'>
+          {Object.entries(editedData)
+            // Filter out unwanted headers
+            .filter(([key]) => !unwantedHeaders.includes(key))
+            .map(([key, value], index, array) => (
+              // <div className='edit-field' key={key}>
+              <div
+                className={`edit-field ${
+                  index === array.length - 1 && array.length % 2 !== 0
+                    ? 'full-width'
+                    : ''
+                }`}
+                key={key}
+              >
+                <div className='edit-field-inner'>
+                  <label htmlFor={key} className='edit-label'>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}:
+                  </label>
+                  {/* Render a dropdown for the "make" field */}
+                  {key === 'make' ? (
+                    <select
+                      id={key}
+                      value={value}
+                      onChange={(e) => handleInputChange(key, e.target.value)}
+                      className='edit-input'
+                    >
+                      {makeOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    // Render an input field for other fields
+                    <input
+                      type='text'
+                      id={key}
+                      value={value}
+                      onChange={(e) => handleInputChange(key, e.target.value)}
+                      className='edit-input'
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
         <button className='edit-submit' type='submit'>
           Save Changes
         </button>

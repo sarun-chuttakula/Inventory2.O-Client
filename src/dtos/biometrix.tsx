@@ -29,5 +29,4 @@ export interface biometrixFormData {
   user: string
   status: StatusOptions
   remarks: string
-  updatedbyname: string
 }
