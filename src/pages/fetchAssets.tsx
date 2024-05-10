@@ -33,6 +33,8 @@ const FetchAssets = () => {
     'router',
     'ups',
     'ac',
+    'medicine',
+    'pantry',
   ]
 
   useEffect(() => {
