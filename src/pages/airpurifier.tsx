@@ -190,7 +190,6 @@ const AirpurifierAuditForm: React.FC = () => {
               />
 
               <tr>
-                <td colSpan={2}></td>
                 <td colSpan={3}>
                   <Button
                     type='submit'

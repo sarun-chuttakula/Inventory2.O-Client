@@ -109,9 +109,17 @@ const Medicine: React.FC = () => {
                 />
               </td>
             </tr>
-            <Button variant='primary' type='submit'>
-              Submit
-            </Button>
+            <tr>
+              <td colSpan={3}>
+                <Button
+                  type='submit'
+                  variant='primary'
+                  style={{ width: '50%' }}
+                >
+                  Submit
+                </Button>
+              </td>
+            </tr>
           </tbody>
         </Table>
       </Form>

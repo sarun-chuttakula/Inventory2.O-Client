@@ -97,9 +97,12 @@ const Pantry: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td colSpan={2}></td>
               <td colSpan={3}>
-                <Button type='submit' variant='primary'>
+                <Button
+                  type='submit'
+                  variant='primary'
+                  style={{ width: '50%' }}
+                >
                   Submit
                 </Button>
               </td>

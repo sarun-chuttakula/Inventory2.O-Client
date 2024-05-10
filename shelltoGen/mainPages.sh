@@ -407,7 +407,6 @@ const ${folder_name}AuditForm: React.FC = () => {
                 onChange={handleChange}
               />
               <tr>
-                <td colSpan={2}></td>
                 <td colSpan={3}>
                   <Button
                     type='submit'
