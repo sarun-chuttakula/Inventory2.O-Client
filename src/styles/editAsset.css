@@ -1,13 +1,12 @@
 .editasset-container {
-  width: 80%; 
-  margin: 0 auto; 
+  width: 80%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
   padding-top: 30px;
 }
-
 
 .edit-container {
   display: flex;
@@ -15,7 +14,6 @@
   flex-wrap: wrap;
   width: 100%;
 }
-
 
 .edit-form {
   display: flex;
@@ -25,10 +23,10 @@
 }
 
 .edit-field {
-  width: 45%; 
+  width: 45%;
   margin-bottom: 20px;
-  margin-right: 5%; 
-  box-sizing: border-box; 
+  margin-right: 5%;
+  box-sizing: border-box;
 }
 
 /* .edit-field:last-child {
@@ -45,11 +43,10 @@
 .edit-label {
   margin: 10px;
   width: 370px;
-
 }
 
 .edit-input {
-  width: 80%; 
+  width: 80%;
   height: 50px;
   padding-left: 15px;
   border-radius: 7px;
@@ -59,11 +56,10 @@
 .edit-submit {
   width: 150px;
   height: 40px;
-  margin: 20px; 
+  margin: 20px;
   background-color: dodgerblue;
   color: white;
   border: none;
   border-radius: 7px;
   cursor: pointer;
 }
-

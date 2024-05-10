@@ -1,70 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-.main-container{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto 0;
+.main-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
 }
 
-.logincontainer{
-    width: 740px;
-    height: 500px;
-    border-radius: 30px;
-    background-color: 	#F4F4F4;
-    text-align: center;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
+.logincontainer {
+  width: 740px;
+  height: 500px;
+  border-radius: 30px;
+  background-color: #f4f4f4;
+  text-align: center;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .content-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.login-container{
-    border: 2px solid #696969;
-    width: 300px;
-    height: 360px;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.login-container {
+  border: 2px solid #696969;
+  width: 300px;
+  height: 360px;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.login-form{
-    text-align: center;
+.login-form {
+  text-align: center;
 }
 
-.textField, .passwordField {
-    width: 250px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #666666;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: white;
-    color: 	black;
+.textField,
+.passwordField {
+  width: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 
 .passwordField {
-    padding-right: 30px; 
-} 
+  padding-right: 30px;
+}
 
 /* input[type=checkbox] {
     text-align: right;
@@ -75,50 +75,47 @@
     font-size: 14px; 
 } */
 
-
 .login-btn {
-    background-color: 	#1E90FF;
-    color: white;
-    margin: 18px 0;
-    border-radius: 5px;
-    border: 1px solid #666666;
-    cursor: pointer;
-    width: 150px;
-    height: 30px;
-    text-align: center;
+  background-color: #1e90ff;
+  color: white;
+  margin: 18px 0;
+  border-radius: 5px;
+  border: 1px solid #666666;
+  cursor: pointer;
+  width: 150px;
+  height: 30px;
+  text-align: center;
 }
 
-.a1{
-    text-decoration: none;
-    color: white;
+.a1 {
+  text-decoration: none;
+  color: white;
 }
 
 .login-container .a1 {
-    text-decoration: underline;
-    color: #1E90FF;
-    font-size: 14px;
-} 
-  
+  text-decoration: underline;
+  color: #1e90ff;
+  font-size: 14px;
+}
+
 ::placeholder {
-    color: 	#696969;
+  color: #696969;
 }
 
 .password-container {
-    position: relative;
-  }
-  
-
-.toggle-password {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #ccc;
-  }
-
-.sign-up-link {
-    text-decoration: none;
-    color: white;
+  position: relative;
 }
 
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ccc;
+}
+
+.sign-up-link {
+  text-decoration: none;
+  color: white;
+}
