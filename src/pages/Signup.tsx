@@ -32,6 +32,7 @@ const SignupScreen: React.FC = () => {
             <input
               className='textfield'
               type='text'
+              name='firstname'
               placeholder='firstName'
               value={formData.firstname}
               onChange={handleChange}
@@ -40,6 +41,7 @@ const SignupScreen: React.FC = () => {
             <input
               className='emailfield'
               type='email'
+              name='email'
               placeholder='Email'
               value={formData.email}
               onChange={handleChange}
@@ -48,6 +50,7 @@ const SignupScreen: React.FC = () => {
             <input
               className='textfield'
               type='text'
+              name='username'
               placeholder='Username'
               value={formData.username}
               onChange={handleChange}
@@ -56,6 +59,7 @@ const SignupScreen: React.FC = () => {
             <input
               className='passwordfield'
               type='password'
+              name='password'
               placeholder='Password'
               value={formData.password}
               onChange={handleChange}
