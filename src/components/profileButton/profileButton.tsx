@@ -3,8 +3,9 @@ import useAuth from '../../hooks/useAuth'
 import { Link } from 'react-router-dom'
 
 const ProfileDropdown: React.FC = () => {
-  const { logout } = useAuth()
+  const { authData, logout } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  console.log(authData?.profilePic, 'authData')
   // const id = authData?.id
 
   const handleLogout = () => {
@@ -18,7 +19,7 @@ const ProfileDropdown: React.FC = () => {
       {/* Profile Icon */}
       <button className='profile-icon' onClick={() => setIsOpen(!isOpen)}>
         <img
-          src={require('../../assets/employee.png')}
+          src={authData?.profilePic || require('../../assets/employee.png')}
           alt='Profile'
           width='40px'
           height='40px'

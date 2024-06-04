@@ -26,7 +26,7 @@ interface AuthData {
   username: string
   password: string
   lastlogin: string
-  profile_pic: string | null
+  profilePic: string | null
   batch?: string | null
   accesstoken: string
   refreshtoken: string

@@ -1,8 +1,11 @@
 import React from 'react'
 import '../styles/purchase-register.css'
+import { useNotification } from '../components/popupnotification/PopUpNotification'
 function PurchaseRegister() {
+  const { notifySuccess, notifyError, notifyInfo } = useNotification()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    notifyError('Form submission is not implemented yet')
     // Handle form submission here
   }
 

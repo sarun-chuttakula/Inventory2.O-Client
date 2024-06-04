@@ -16,7 +16,7 @@ enum CityOptions {
 
 enum OperatingSystem {
   Windows = 'Windows',
-  Linux = 'Linux',
+  Ubuntu = 'Ubuntu',
   Mac = 'Mac',
   Others = 'Others',
 }
